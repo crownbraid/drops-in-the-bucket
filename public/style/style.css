@@ -1,0 +1,51 @@
+html {
+  box-sizing: border-box;
+  text-align: center;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#content {
+	margin-top: 3em;
+}
+
+/* bucket */
+#bucket-interface {
+	width: 20em;
+	height: 29.6em;
+	position: relative;
+	margin: 0 auto;
+}
+#bucket-interface > * {
+	position: absolute;
+}
+#bucket {
+	width: 106%;
+	left: 0;
+}
+#water {
+	bottom: 0;
+}
+#water-top {
+	width: 80%;
+	border-bottom: 0em solid #B5C9FD;
+}
+
+
+
+#user-interaction {
+	border: .2em solid black;
+	width: 47em;
+/* standard height: 6.5em */
+	height: 14em;
+	margin: 0 auto;
+}
+#title {
+	font-family: giro;
+	font-size: 2em;
+	letter-spacing: .8em;
+	text-align: center;
+	padding-left: .5em;
+	margin: .3em;
+}

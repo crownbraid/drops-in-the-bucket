@@ -1,0 +1,23 @@
+function Room(id, rules, time_limit, date_created, creator, creatorEmail) {
+	var roomid = {
+		id: id,
+		rules: rules,
+		time_limit: time_limit,
+		date_created: date_created,
+		completion_status: 0,
+		users: {}
+	};
+	roomid.users[creator] = newUser(creator, creatorEmail);
+	return roomid;
+}
+
+function newUser(userName, email) {
+	var userName = {
+		email: email,
+		recording: null
+	};
+	return userName;
+}
+
+var room1 = Room("room1", "asdfdsa", 4.5, 346456456, "Jimmy", "jimmy@jimmy.com");
+console.log(room1);
