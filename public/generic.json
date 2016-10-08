@@ -1,4 +1,4 @@
-function Room(id, rules, time_limit, date_created, creator, creatorEmail) {
+function Room(id, rules, time_limit, date_created, creator) {
 	var roomid = {
 		id: id,
 		rules: rules,
@@ -7,17 +7,48 @@ function Room(id, rules, time_limit, date_created, creator, creatorEmail) {
 		completion_status: 0,
 		users: {}
 	};
-	roomid.users[creator] = newUser(creator, creatorEmail);
+	roomid.users[creator] = newUser(creator);
 	return roomid;
 }
 
-function newUser(userName, email) {
+function newUser(userName) {
 	var userName = {
-		email: email,
+		id: userName
 		recording: null
 	};
 	return userName;
 }
 
-var room1 = Room("room1", "asdfdsa", 4.5, 346456456, "Jimmy", "jimmy@jimmy.com");
+var room1 = Room("room1", "asdfdsa", 4.5, 346456456, "Jimmy");
+console.log(room1);
+
+
+
+
+
+
+
+
+function User(rules, time_limit, date_created, creator) {
+	var userid = {
+		id: id,
+		userName: userName,
+		email: email, 
+		date_joined: date_joined,
+		rooms: {}
+	};
+	userid.id= generateUserID();
+	roomid.users[creator] = newUser(creator);
+	return roomid;
+}
+
+function joinRoom(userName) {
+	var userName = {
+		id: userName
+		recording: null
+	};
+	return userName;
+}
+
+var room1 = Room("room1", "asdfdsa", 4.5, 346456456, "Jimmy");
 console.log(room1);

@@ -28,8 +28,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "binaryjs": "^0.2.1",
     "express": "^4.14.0",
-    "nodemon": "^1.10.2"
+    "node-uuid": "^1.4.7",
+    "nodemon": "^1.10.2",
+    "wav": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
