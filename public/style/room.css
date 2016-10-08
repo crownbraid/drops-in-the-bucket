@@ -1,0 +1,67 @@
+html {
+  box-sizing: border-box;
+  text-align: center;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+#content {
+	margin-top: 3em;
+}
+
+
+
+/* bucket */
+#bucket-interface {
+	width: 20em;
+	height: 29.6em;
+	position: relative;
+	margin: 0 auto;
+}
+#bucket-interface > * {
+	position: absolute;
+}
+#bucket {
+	width: 106%;
+	left: 0;
+	border-bottom: 1em solid white;
+}
+#water {
+	bottom: 0;
+	border-bottom: .6em solid #B5C9FD;
+}
+#water-top {
+	width: 100%;
+	margin: 0 auto;
+	height: 5.35em;
+}
+#water-top-image {
+	width: 73.5%;
+	height: 100%;
+}
+
+
+
+
+
+#user-interaction {
+	border: .2em solid black;
+	width: 47em;
+/* standard height: 6.5em */
+	height: 14em;
+	margin: 0 auto;
+}
+#user-interaction > *, #room-info > * {
+	border: .15em black solid;
+	padding: .5em;
+	width: 85%;
+	margin: .5em auto;
+}
+#title {
+	font-family: giro;
+	font-size: 2em;
+	letter-spacing: .8em;
+	text-align: center;
+	padding-left: .5em;
+	margin: .3em;
+}

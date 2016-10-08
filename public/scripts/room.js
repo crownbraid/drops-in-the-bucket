@@ -11,9 +11,9 @@ function animateUp() {
 
 function loadRoomDetails(room) {
 	var room = rooms[room];
-	$("#rules").text(room.rule);
+	$("#rules").text("Rules: " + room.rule);
 	var time = parseFloat(Math.round(room.time * 100) / 100).toFixed(2);
-	$("#time-limit").text(time);
+	$("#time-limit").text("Length: " + time);
 }
 
 var rooms = {

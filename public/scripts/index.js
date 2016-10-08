@@ -37,7 +37,10 @@ var alan = {
 			name: "My First Room",
 			rule: "be very careful",
 			status: "unfinished",
-			url: "/room.html"
+			url: "/room.html",
+			users: [
+
+			]
 		},
 		{
 			name: "My Second Room",

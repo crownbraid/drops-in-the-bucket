@@ -37,7 +37,15 @@ html {
 	overflow: auto;
 	height: 5em;
 }
-
+#title {
+	font-family: giro;
+	font-size: 2em;
+	letter-spacing: .8em;
+	text-align: center;
+	padding-left: .5em;
+	margin: .3em;
+	color: blue;
+}
 
 
 
@@ -87,61 +95,4 @@ input[type=text] {
 	margin-top:30px;
 	border:1px solid #ccc;
 	padding-left:40px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* bucket */
-#bucket-interface {
-	width: 20em;
-	height: 29.6em;
-	position: relative;
-	margin: 0 auto;
-}
-#bucket-interface > * {
-	position: absolute;
-}
-#bucket {
-	width: 106%;
-	left: 0;
-}
-#water {
-	bottom: 0;
-	border-bottom: .6em solid #B5C9FD;
-}
-#water-top {
-	width: 100%;
-	margin: 0 auto;
-	height: 5.35em;
-}
-#water-top-image {
-	width: 73.5%;
-	height: 100%;
-}
-#user-interaction {
-	border: .2em solid black;
-	width: 47em;
-/* standard height: 6.5em */
-	height: 14em;
-	margin: 0 auto;
-}
-#title {
-	font-family: giro;
-	font-size: 2em;
-	letter-spacing: .8em;
-	text-align: center;
-	padding-left: .5em;
-	margin: .3em;
 }
