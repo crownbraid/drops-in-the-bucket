@@ -4,6 +4,14 @@ var app = express();
 
 app.use(express.static('public'));
 app.listen(process.env.PORT || 8080);
+/*
+app.get('/api/:user', function(req, res) {
+  res.json(../documents/users/:user);
+});
+
+app.get('/api/:room', function(req, res) {
+  res.json(../documents/rooms/:room);
+});
 
 
 /*

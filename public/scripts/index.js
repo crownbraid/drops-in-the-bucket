@@ -5,6 +5,10 @@ var roomID = uuid.v4(); */
 // VIEWS
 function div_show(div) {
 	document.getElementById(div).style.display = "block";
+	if (div = 'reg') {
+		$('#reg-userName').val($('#userName').val());
+		$('#reg-userPassword').val($('#password').val());
+	}
 }
 function div_hide(div){
 	document.getElementById(div).style.display = "none";

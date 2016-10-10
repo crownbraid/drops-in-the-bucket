@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   text-align: center;
+  -webkit-font-smoothing: antialiased;
 }
 *, *:before, *:after {
   box-sizing: inherit;

@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/style/index.css">
 	<script type="text/javascript" src="/scripts/jquery-2.2.3.js"></script>
 	<script type="text/javascript" src="/scripts/index.js"></script>
+	<script type="text/javascript" src="/scripts/MaskedPassword.js"></script>
 </head>
 <body>
 	<div class="popup" id="room-reg">
@@ -29,9 +30,15 @@
 				<p class="close" onclick ="div_hide('reg')">X</button>
 				<h2>Registration</h2>
 				<hr>
-				<input id="userName" name="userName" placeholder="Choose a Username" type="text">
-				<input id="userPassword" name="userPassword" placeholder="Choose a Password" type="text">
-				<input id="userEmail" name="userEmail" placeholder="What's your Email?" type="text">
+				<label for="pword">Username:</label>
+				<input id="reg-userName" name="userName" placeholder="Choose a Username" type="text">
+				<label for="pword">Password:</label>
+				<span>
+					<input type="hidden" name="pword" />
+					<input id="reg-userPassword" name="userPassword" placeholder="Choose a Password" type="text" class="masked">
+				</span>
+				<label for="pword">Email:</label>
+				<input id="reg-userEmail" name="userEmail" placeholder="What's your Email?" type="text">
 				<!-- href for later: javascript:%20check_empty() -->
 				<a href="index.html" id="submit" target="blank">Register My Account</a>
 			</form>
@@ -39,7 +46,8 @@
 	</div>
 	<header>
 		<h1 id="title">drops in the bucket</h1>
-		<div id="about">Drops in the Bucket is a tool for gathering sounds from a distance, and stirring them together. We recommend you approach your project like an improvisation game: invite your friends, get to know their style, and designate rules that challenge your ensemble. </div>
+		<div id="about">Drops in the Bucket is a tool for gathering sounds from a distance, and stirring them together. We recommend you approach your project like an improvisation game: invite your friends, get to know their style, and designate rules that challenge your ensemble. Drops In The Bucket is a tool for quick and easy long-distance collaborative sound improvisation.
+ </div>
 	</header>
 	<section id="account-manager">
 		<div id="login">
@@ -63,5 +71,19 @@
 			<button onclick="div_show('room-reg')">Create New Room</button>
 		</div>
 	</section>
+	<script type="text/javascript">
+	
+		//apply masking to the demo-field
+		//pass the field reference, masking symbol, and character limit
+		new MaskedPassword(document.getElementById("password"), '\u25CF');
+	
+		//test the submitted value
+		document.getElementById('login-form').onsubmit = function()
+		{
+			alert('pword = "' + this.pword.value + '"');
+			return false;
+		};
+	
+	</script>
 </body>
 </html>
