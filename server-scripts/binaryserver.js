@@ -55,31 +55,30 @@ binaryServer.on('connection', function(client) {
     function orderFileMerge(roomAddress, sounds, duration) {
       console.log("mergingfiles--\nRoom Address: " + roomAddress + "\nSounds: " + sounds + "\nDuration: " + duration);
       console.log(sounds);
-      var spawn = require("child_process").spawn;
-      var process = spawn('python',['./server-scripts/overdub.py', roomAddress, sounds, duration]);
-      process.stdout.on('data', function (data){
+
+      var PythonShell = require('python-shell');
+      var pyshell = new PythonShell('./server-scripts/overdub.py');
+      pyshell.on('message', function (message) {
+        console.log(message);
+      });
+
+      var options = {
+        args: [roomAddress, JSON.stringify(sounds), duration]
+      };
+      PythonShell.run('./server-scripts/overdub.py', options, function (err) {
+        if (err) throw err;
+        console.log('finished');
+      });
+
+      /* process.stdout.on('data', function (data){
         console.log("data has been received: " + data);
       });
+      pyshell.end(function (err) {
+        if (err) throw err;
+        console.log('finished');
+      }); */
     }
   });
 });
-/*
-// const $ = require('jQuery');
-     $.ajax({
-        type:'get',
-        url: 'overdub.py',
-        cache:false,
-        data: JSON.stringify({
-          'roomAddress': roomAddress,
-          'addresses': addresses
-        }),
-        async: true,
-        success: function(data) {
-          // <put your custom validation here using the response from data structure >
-        },
-        error: function(request, status, error) {
-          // <put your custom code here to handle the call failure>
-        }
-      });
-*/
+
 module.exports.binaryServer = binaryServer;

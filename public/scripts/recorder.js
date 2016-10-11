@@ -32,12 +32,28 @@
     function recordingCountdown() {
       $('#record-button').hide();
       $('#recording-timeline').show();
-      $('#recording-status').html("<p>Recording has Started</p>");
+
       window.Stream = client.createStream();
       setTimeout(function() {stopRecording()}, genericLength);
+      $('#recording-status').html("<p>Recording has Started</p>");
+      var sec = 0;
+      function pad (val) { 
+        return val > 9 ? val : "0" + val; 
+      }
+      var timer = setInterval(function() {
+        $("#seconds").html(pad(++sec%60));
+        $("#minutes").html(pad(parseInt(sec/60,10)));
+        $("#hours").html(pad(parseInt(sec / 3600, 10)));
+      }, 1000);
+      setTimeout(function () {
+          clearInterval(timer);
+        }, 10000);
     }
 
     window.stopRecording = function() {
+      setTimeout(function () {
+        $("#seconds, #minutes, #hours").hide();
+      }, 1000);
       $('#recording-status').html("<p>Recording has finished</p>");
       console.log("recording is finished");
       recording = false;

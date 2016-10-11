@@ -40,16 +40,16 @@ html {
 	height: 100%;
 }
 
-
 #recording-timeline {
 	display: none;
 }
 
 #record-button {
 	background-image: url("http://pix.iemoji.com/images/emoji/apple/ios-9/256/large-red-circle.png");
-	height: 50px;
-	width: 50px;
+	width: 75px;
+	height: 75px;
 	background-size: contain;
+	border: none;
 }
 
 #user-interaction {
@@ -58,11 +58,17 @@ html {
 	height: 6.5em;
 	margin: 0 auto;
 }
-#user-interaction > *, #room-info > * {
-	/* border: .15em black solid; */
+#user-interaction > * {
+	
 	padding: .5em;
+	width: 100%;
+}
+#room-info > * {
+	display: inline-block;
+	text-align: left;
+}
+#rules {
 	width: 85%;
-	margin: .5em auto;
 }
 #title {
 	font-family: giro;

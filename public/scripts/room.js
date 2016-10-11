@@ -1,6 +1,6 @@
 $(function() {
 	loadRoomDetails("room1");
-	animateUp();
+	// animateUp();
 });
 
 function animateUp() {
@@ -19,8 +19,8 @@ function loadRoomDetails(room) {
 var rooms = {
 	room1: {
 			name: "My First Room",
-			rule: "be very careful",
-			time: 11.00,
+			rule: "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+			time: 0.10,
 			status: "unfinished",
 			url: "/room.html"
 	},
