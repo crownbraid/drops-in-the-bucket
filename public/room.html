@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Drops in the Bucket</title>
-		<link rel="stylesheet" href="/style/room.css">
 		<script type="text/javascript" src="/scripts/jquery-2.2.3.js"></script>
 		<script type="text/javascript" src="/scripts/room.js"></script>
-		<!--
-		<script src="https://cdn.binaryjs.com/0/binary.js"></script> 
-		-->
+		<link rel="stylesheet" href="/style/room.css">
+		
+		<!-- recorder scripts -->
+		<script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script> 
+		<script type="text/javascript" src="/scripts/recorder.js"></script>
 	</head>
 	<body>
 		<div id="content">
@@ -20,17 +21,20 @@
 				</div>
 				<img id="bucket" src="/images/bucket.png">
 			</section>
-			<h1 id="title">drops in the bucket</h1>
+			<header>
+				<h1 id="title">drops in the bucket</h1>
+			</header>
 		    <section id="user-interaction">
 		    	<div id="room-info">
 			        <span id="rules"></span>
 			        <span id="time-limit"></span>
 		      	</div>
 			    <div id="recording-interface">
-			    	Recording Controls and Playback Timeline
-			        <button type="button">record</button>
-			        <button type="button">play</button>
-			        <button type="button">Click Me!</button>
+			    	<div id="recording-timeline">
+			    		Recording Controls and Playback Timeline:
+			    		<div id="recording-status"></div>
+			    	</div>
+					<button onclick="startRecording()" id='record-button'></button>
 			    </div>
 		    </section>
 			<a href="index.html" target="blank">home</a>

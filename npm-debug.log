@@ -1,0 +1,180 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/bin/node',
+1 verbose cli   '/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'node-python' ]
+2 info using npm@2.15.9
+3 info using node@v4.6.0
+4 verbose install initial load of /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/package.json
+5 warn package.json drops-in-the-bucket@1.0.0 No description
+6 warn package.json drops-in-the-bucket@1.0.0 No repository field.
+7 warn package.json drops-in-the-bucket@1.0.0 No README data
+8 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/binaryjs/package.json
+9 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/chai/package.json
+10 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/chai-http/package.json
+11 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/express/package.json
+12 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/jade/package.json
+13 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/junk/package.json
+14 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/mocha/package.json
+15 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/node-uuid/package.json
+16 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/nodemon/package.json
+17 verbose installManyTop reading scoped package data from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/wav/package.json
+18 info package.json chai-http@3.0.0 No README data
+19 info package.json chai-http@3.0.0 No license field.
+20 info package.json node-uuid@1.4.7 No license field.
+21 info package.json binaryjs@0.2.1 No license field.
+22 verbose readDependencies loading dependencies from /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/package.json
+23 silly cache add args [ 'node-python', null ]
+24 verbose cache add spec node-python
+25 silly cache add parsed spec Result {
+25 silly cache add   raw: 'node-python',
+25 silly cache add   scope: null,
+25 silly cache add   name: 'node-python',
+25 silly cache add   rawSpec: '',
+25 silly cache add   spec: 'latest',
+25 silly cache add   type: 'tag' }
+26 silly addNamed node-python@latest
+27 verbose addNamed "latest" is being treated as a dist-tag for node-python
+28 info addNameTag [ 'node-python', 'latest' ]
+29 silly mapToRegistry name node-python
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry data Result {
+32 silly mapToRegistry   raw: 'node-python',
+32 silly mapToRegistry   scope: null,
+32 silly mapToRegistry   name: 'node-python',
+32 silly mapToRegistry   rawSpec: '',
+32 silly mapToRegistry   spec: 'latest',
+32 silly mapToRegistry   type: 'tag' }
+33 silly mapToRegistry uri https://registry.npmjs.org/node-python
+34 verbose addNameTag registry:https://registry.npmjs.org/node-python not in flight; fetching
+35 verbose request uri https://registry.npmjs.org/node-python
+36 verbose request no auth needed
+37 info attempt registry request try #1 at 3:14:47 PM
+38 verbose request id 7e3dda73211da699
+39 http request GET https://registry.npmjs.org/node-python
+40 http 200 https://registry.npmjs.org/node-python
+41 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+41 verbose headers   etag: '"BSCCG65PJGJMPOYX0W20VILKB"',
+41 verbose headers   'content-type': 'application/json',
+41 verbose headers   'content-encoding': 'gzip',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '2854',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Tue, 11 Oct 2016 19:14:47 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   age: '0',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-iad2627-IAD',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1476213287.457923,VS0,VE424',
+41 verbose headers   vary: 'Accept-Encoding' }
+42 silly get cb [ 200,
+42 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+42 silly get     etag: '"BSCCG65PJGJMPOYX0W20VILKB"',
+42 silly get     'content-type': 'application/json',
+42 silly get     'content-encoding': 'gzip',
+42 silly get     'cache-control': 'max-age=300',
+42 silly get     'content-length': '2854',
+42 silly get     'accept-ranges': 'bytes',
+42 silly get     date: 'Tue, 11 Oct 2016 19:14:47 GMT',
+42 silly get     via: '1.1 varnish',
+42 silly get     age: '0',
+42 silly get     connection: 'keep-alive',
+42 silly get     'x-served-by': 'cache-iad2627-IAD',
+42 silly get     'x-cache': 'MISS',
+42 silly get     'x-cache-hits': '0',
+42 silly get     'x-timer': 'S1476213287.457923,VS0,VE424',
+42 silly get     vary: 'Accept-Encoding' } ]
+43 verbose get saving node-python to /Users/Jean-PaulWallace/.npm/registry.npmjs.org/node-python/.cache.json
+44 verbose correctMkdir /Users/Jean-PaulWallace/.npm correctMkdir not in flight; initializing
+45 silly addNameTag next cb for node-python with tag latest
+46 silly addNamed node-python@0.0.4
+47 verbose addNamed "0.0.4" is a plain semver version for node-python
+48 silly mapToRegistry name node-python
+49 silly mapToRegistry using default registry
+50 silly mapToRegistry registry https://registry.npmjs.org/
+51 silly mapToRegistry data Result {
+51 silly mapToRegistry   raw: 'node-python',
+51 silly mapToRegistry   scope: null,
+51 silly mapToRegistry   name: 'node-python',
+51 silly mapToRegistry   rawSpec: '',
+51 silly mapToRegistry   spec: 'latest',
+51 silly mapToRegistry   type: 'tag' }
+52 silly mapToRegistry uri https://registry.npmjs.org/node-python
+53 verbose addRemoteTarball https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz not in flight; adding
+54 verbose addRemoteTarball [ 'https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz',
+54 verbose addRemoteTarball   '5dc689cc6f8394e0de39b10627296e93ff28db08' ]
+55 info retry fetch attempt 1 at 3:14:48 PM
+56 info attempt registry request try #1 at 3:14:48 PM
+57 http fetch GET https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz
+58 http fetch 200 https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz
+59 silly fetchAndShaCheck shasum 5dc689cc6f8394e0de39b10627296e93ff28db08
+60 verbose addTmpTarball /var/folders/ks/33lcb1vj0t72jtl0q8t2pvmw0000gn/T/npm-24794-bc9ddea5/registry.npmjs.org/node-python/-/node-python-0.0.4.tgz not in flight; adding
+61 verbose addTmpTarball already have metadata; skipping unpack for node-python@0.0.4
+62 verbose correctMkdir /Users/Jean-PaulWallace/.npm correctMkdir not in flight; initializing
+63 silly cache afterAdd node-python@0.0.4
+64 verbose afterAdd /Users/Jean-PaulWallace/.npm/node-python/0.0.4/package/package.json not in flight; writing
+65 verbose correctMkdir /Users/Jean-PaulWallace/.npm correctMkdir not in flight; initializing
+66 verbose afterAdd /Users/Jean-PaulWallace/.npm/node-python/0.0.4/package/package.json written
+67 silly install resolved [ { name: 'node-python',
+67 silly install resolved     version: '0.0.4',
+67 silly install resolved     description: 'Call python stuff from nodejs',
+67 silly install resolved     main: 'index.js',
+67 silly install resolved     repository:
+67 silly install resolved      { type: 'git',
+67 silly install resolved        url: 'git://github.com/JeanSebTr/node-python.git' },
+67 silly install resolved     bugs: { url: 'https://github.com/JeanSebTr/node-python/issues' },
+67 silly install resolved     keywords: [ 'python', 'bridge' ],
+67 silly install resolved     author:
+67 silly install resolved      { name: 'Jean-Sébastien Tremblay',
+67 silly install resolved        email: 'jeansebtr@xpensia.com',
+67 silly install resolved        url: 'http://blog.jeansebtr.com' },
+67 silly install resolved     contributors: [ [Object] ],
+67 silly install resolved     scripts: { test: 'node test/linker.js', install: 'node-gyp rebuild' },
+67 silly install resolved     license: 'BSD',
+67 silly install resolved     gypfile: true,
+67 silly install resolved     readmeFilename: 'README.md',
+67 silly install resolved     dependencies: { bindings: '~1.1.1' },
+67 silly install resolved     readme: '# node-python binding \n\npython bridge for nodejs!\n\nHyper-beta, don\'t hesitate to try and report bugs!\n\n[![Build Status](https://travis-ci.org/JeanSebTr/node-python.png)](https://travis-ci.org/JeanSebTr/node-python)\n\n## Installation\n\n```npm install node-python```\n\n## Usage\n\n```javascript\n\n// python stuff\nvar python = require(\'node-python\');\nvar os = python.import(\'os\');\n\n// nodejs stuff\nvar path = require(\'path\');\n\nassert(os.path.basename(os.getcwd()) == path.basename(process.cwd()))\n\n```\n\nYou should now go have fun with that and make it brokes :)\n\n## Current status\n\nWhat should work:\n\n* Conversion between None and Undefined\n* Conversion between Python\'s and Node\'s Boolean\n* Conversion between Python\'s and Node\'s String\n* Calling python functions from node\n* Conversion from Python\'s Array to Node\'s Array\n\nWhat may be broken:\n\n* Losing precision from Python\'s 64 bits Integer to Node\'s Number\n* If you\'re using node v0.6.x (please upgrade) you\'ll have to manually compile with node-gyp\n\nWhat\'s to be done:\n\n* Conversion from Node\'s Array to Python\'s Array\n* Pass javascript object to python\n* Call javascript function from python\n\nWhat would be realy awesome:\n\n* Proper object introspection\n\n\n## History\n\n* **v0.0.4** : 2013-10-09\n  - use the bindings module to load the native extension\n* **v0.0.3** : 2013-07-06\n  - Refactor\n  - Better type conversion & error handling\n  - Compilation now properly working on both OSX and Linux. Windows compilation _may_ work too\n* **v0.0.2** : 2012-12-21\n  - Forked from [chrisdickinson/node-python](https://github.com/chrisdickinson/node-python)\n  - Compilation with node-gyp\n',
+67 silly install resolved     _id: 'node-python@0.0.4',
+67 silly install resolved     dist:
+67 silly install resolved      { shasum: '5dc689cc6f8394e0de39b10627296e93ff28db08',
+67 silly install resolved        tarball: 'https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz' },
+67 silly install resolved     _from: 'node-python@latest',
+67 silly install resolved     _npmVersion: '1.3.5',
+67 silly install resolved     _npmUser: { name: 'JeanSebTr', email: 'jean-seb@total-itech.com' },
+67 silly install resolved     maintainers: [ [Object] ],
+67 silly install resolved     directories: {},
+67 silly install resolved     _shasum: '5dc689cc6f8394e0de39b10627296e93ff28db08',
+67 silly install resolved     _resolved: 'https://registry.npmjs.org/node-python/-/node-python-0.0.4.tgz' } ]
+68 info install node-python@0.0.4 into /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket
+69 info installOne node-python@0.0.4
+70 verbose installOne of node-python to /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket not in flight; installing
+71 verbose correctMkdir /Users/Jean-PaulWallace/.npm/_locks correctMkdir not in flight; initializing
+72 warn locking Error: EACCES: permission denied, open '/Users/Jean-PaulWallace/.npm/_locks/node-python-522ee549d7f0e7ca.lock'
+72 warn locking     at Error (native)
+72 warn locking  /Users/Jean-PaulWallace/.npm/_locks/node-python-522ee549d7f0e7ca.lock failed { [Error: EACCES: permission denied, open '/Users/Jean-PaulWallace/.npm/_locks/node-python-522ee549d7f0e7ca.lock']
+72 warn locking   errno: -13,
+72 warn locking   code: 'EACCES',
+72 warn locking   syscall: 'open',
+72 warn locking   path: '/Users/Jean-PaulWallace/.npm/_locks/node-python-522ee549d7f0e7ca.lock' }
+73 verbose stack Error: Attempt to unlock /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/node-python, which hasn't been locked
+73 verbose stack     at unlock (/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/lib/utils/locker.js:64:11)
+73 verbose stack     at cb (/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/lib/install.js:1018:5)
+73 verbose stack     at /Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/lib/install.js:1022:20
+73 verbose stack     at /Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/lib/utils/locker.js:39:7
+73 verbose stack     at cb (/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+73 verbose stack     at /Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+73 verbose stack     at /Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:232:16
+73 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+74 verbose cwd /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket
+75 error Darwin 14.1.0
+76 error argv "/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/bin/node" "/Users/Jean-PaulWallace/.nvm/versions/node/v4.6.0/bin/npm" "install" "node-python"
+77 error node v4.6.0
+78 error npm  v2.15.9
+79 error Attempt to unlock /Users/Jean-PaulWallace/Desktop/Code/Projects/drops-in-the-bucket/node_modules/node-python, which hasn't been locked
+80 error If you need help, you may report this error at:
+80 error     <https://github.com/npm/npm/issues>
+81 verbose exit [ 1, true ]

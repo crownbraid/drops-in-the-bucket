@@ -30,6 +30,8 @@
   "dependencies": {
     "binaryjs": "^0.2.1",
     "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "junk": "^2.0.0",
     "node-uuid": "^1.4.7",
     "nodemon": "^1.10.2",
     "wav": "^1.0.1"

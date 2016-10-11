@@ -41,18 +41,25 @@ html {
 }
 
 
+#recording-timeline {
+	display: none;
+}
 
-
+#record-button {
+	background-image: url("http://pix.iemoji.com/images/emoji/apple/ios-9/256/large-red-circle.png");
+	height: 50px;
+	width: 50px;
+	background-size: contain;
+}
 
 #user-interaction {
 	border: .2em solid black;
 	width: 47em;
-/* standard height: 6.5em */
-	height: 14em;
+	height: 6.5em;
 	margin: 0 auto;
 }
 #user-interaction > *, #room-info > * {
-	border: .15em black solid;
+	/* border: .15em black solid; */
 	padding: .5em;
 	width: 85%;
 	margin: .5em auto;
