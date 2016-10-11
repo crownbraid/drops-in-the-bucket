@@ -50,6 +50,9 @@ html {
 	height: 75px;
 	background-size: contain;
 	border: none;
+	margin-top: -3em;
+	z-index: 1;
+	position: relative
 }
 
 #user-interaction {
@@ -57,11 +60,11 @@ html {
 	width: 47em;
 	height: 6.5em;
 	margin: 0 auto;
+	position: relative;
 }
-#user-interaction > * {
-	
+#room-info, #recording-timeline {
 	padding: .5em;
-	width: 100%;
+	width: 84%;
 }
 #room-info > * {
 	display: inline-block;
@@ -77,4 +80,16 @@ html {
 	text-align: center;
 	padding-left: .5em;
 	margin: .3em;
+}
+#submitted-by {
+	position: absolute;
+	right: 0;
+	margin-right: -10em;
+	z-index: 2;
+}
+#time-limit {
+	right: 0;
+	top: 0;
+	position: absolute;
+	width: 15%;
 }

@@ -16,6 +16,7 @@
 			<section id="bucket-interface">
 				<div id="water">
 					<div id="water-top">
+						<p id="submitted-by">submitted by: cool_Alan</p>
 						<img id="water-top-image" src="/images/water-top.png">
 					</div>
 				</div>
@@ -27,17 +28,14 @@
 		    <section id="user-interaction">
 		    	<div id="room-info">
 			        <div id="rules"></div>
-			        <div id="time-limit"></div>
 		      	</div>
-			    <div id="recording-interface">
-			    	<div id="recording-timeline">
-			    		<div><span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></div>
-			    		Recording Controls and Playback Timeline:
-			    		<div id="recording-status"></div>
-			    	</div>
-					<button onclick="startRecording()" id='record-button'></button>
-			    </div>
+		    	<div id="recording-timeline">
+		    		<div><input type="range"><span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></div>
+		    	</div>
+		    	<div id="time-limit"></div>
+		    	<div id="recording-status"></div>
 		    </section>
+		    <button onclick="startRecording()" id='record-button'></button>
 			</br>
 			</br>
 			</br>

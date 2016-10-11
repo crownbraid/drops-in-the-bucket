@@ -1,6 +1,6 @@
 $(function() {
 	loadRoomDetails("room1");
-	// animateUp();
+	animateUp();
 });
 
 function animateUp() {

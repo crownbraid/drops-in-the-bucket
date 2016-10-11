@@ -19,19 +19,24 @@
 
     window.startRecording = function() {
       recording = true;
-      $('#room-info').hover().css('opacity', 0)
+      $('#room-info').css('opacity', 1)
           .slideUp('slow')
           .animate(
-              { opacity: 1 },
+              { opacity: 0 },
               { queue: false, duration: 'slow', 
               complete: recordingCountdown()
               }
+          );
+      $('#recording-timeline').css('opacity', 0)
+          .slideDown('slow')
+          .animate(
+              { opacity: 1 },
+              { queue: false, duration: 'slow'}
           );
     }
 
     function recordingCountdown() {
       $('#record-button').hide();
-      $('#recording-timeline').show();
 
       window.Stream = client.createStream();
       setTimeout(function() {stopRecording()}, genericLength);
