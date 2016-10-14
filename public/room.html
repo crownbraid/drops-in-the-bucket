@@ -10,13 +10,14 @@
 		<!-- recorder scripts -->
 		<script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script> 
 		<script type="text/javascript" src="/scripts/recorder.js"></script>
+		<script type="text/javascript" src="/scripts/audioplayback.js"></script>
 	</head>
 	<body>
 		<div id="content">
 			<section id="bucket-interface">
 				<div id="water">
 					<div id="water-top">
-						<p id="submitted-by">submitted by: cool_Alan</p>
+						<div id="submitted-by">submitted by: cool_Alan</div>
 						<img id="water-top-image" src="/images/water-top.png">
 					</div>
 				</div>
@@ -29,17 +30,37 @@
 		    	<div id="room-info">
 			        <div id="rules"></div>
 		      	</div>
-		    	<div id="recording-timeline">
-		    		<div><input type="range"><span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></div>
+				<div id="audioplayer">
+					<audio class="audio">
+					    <source src="combinedfiles.wav" type="audio/wav">
+					</audio>
+			    	<div id="myProgress">
+			    		<div id="recordingProgress"></div>
+						<div id="myBar">
+							<div id="myBarSlide"></div>
+			    		</div>
+			    		<input type="range" step="any" class="seekbar"></input>
+			    	</div>
+			    	<button class='play'>play</button>
+			    	<button class='pause'>pause</button>
+				</div>
+		    	<div id="time-limit">
+		    		Length: </br>
+		    		<div id="time-display">
+		    			<div id="recorded-time">
+			    			<span id="hours"></span>:
+			    			<span id="minutes"></span>:
+			    			<span id="seconds"></span>
+		    			</div>
+		    		</div>
 		    	</div>
-		    	<div id="time-limit"></div>
-		    	<div id="recording-status"></div>
 		    </section>
-		    <button onclick="startRecording()" id='record-button'></button>
+		    <button id='main-button'></button>
 			</br>
 			</br>
 			</br>
 			<a href="index.html" target="blank">home</a>
+			<button onclick="hideBucket()" class=".play">hide bucket</button>
 	    </div> 
 	</body>
 </html>

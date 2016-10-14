@@ -1,5 +1,6 @@
 (function(window) {
   var client = new BinaryClient('ws://localhost:9002');
+  var buttonState = 'record';
 
   client.on('open', function() {
 
@@ -15,10 +16,11 @@
 
     var recording = false;
 
-    var genericLength = 10000
+    var genericLength = 10000;
 
     window.startRecording = function() {
       recording = true;
+      $('#recordingProgress').css('width', '0%');
       $('#room-info').css('opacity', 1)
           .slideUp('slow')
           .animate(
@@ -27,43 +29,73 @@
               complete: recordingCountdown()
               }
           );
-      $('#recording-timeline').css('opacity', 0)
+      $('#audioplayer').css('opacity', 0)
           .slideDown('slow')
           .animate(
               { opacity: 1 },
               { queue: false, duration: 'slow'}
           );
     }
-
-    function recordingCountdown() {
-      $('#record-button').hide();
-
-      window.Stream = client.createStream();
-      setTimeout(function() {stopRecording()}, genericLength);
-      $('#recording-status').html("<p>Recording has Started</p>");
-      var sec = 0;
-      function pad (val) { 
-        return val > 9 ? val : "0" + val; 
-      }
-      var timer = setInterval(function() {
-        $("#seconds").html(pad(++sec%60));
-        $("#minutes").html(pad(parseInt(sec/60,10)));
-        $("#hours").html(pad(parseInt(sec / 3600, 10)));
-      }, 1000);
-      setTimeout(function () {
-          clearInterval(timer);
-        }, 10000);
+    function animateUp(users, timelength) {
+      var waterInc = 11.35/users + 'em';
+      var waterTopInc = 0.95/users + 'em';
+      var waterTopImageInc = 8/users  + '%';
+      $('#water').animate({'border-bottom-width': '+=' + waterInc}, timelength, 'swing');
+      $('#water-top').animate({'height': '-=' + waterTopInc}, timelength, 'swing');
+      $('#water-top-image').animate({'width': '+=' + waterTopImageInc}, timelength, 'swing');
     }
 
+
+    function recordingCountdown() {
+      setTimeout(function () {
+        buttonState = 'recording';
+        $('#main-button').css('background-image', 'url("../images/stop.png")');
+        window.Stream = client.createStream();
+        animateUp(4, genericLength);
+        setTimeout(function() {stopRecording()}, genericLength);
+        $('#recordingProgress').animate({'width': '100%'}, genericLength);
+        var sec = 0;
+        function pad (val) { 
+          return val > 9 ? val : "0" + val; 
+        }
+        var timer = setInterval(function() {
+          $("#seconds").html(pad(++sec%60));
+          $("#minutes").html(pad(parseInt(sec/60,10)));
+          $("#hours").html(pad(parseInt(sec / 3600, 10)));
+        }, 1000);
+        setTimeout(function () {
+            clearInterval(timer);
+          }, 10000);
+      }, 1000);
+    } 
+
     window.stopRecording = function() {
+      buttonState = 'play';
       setTimeout(function () {
         $("#seconds, #minutes, #hours").hide();
       }, 1000);
-      $('#recording-status').html("<p>Recording has finished</p>");
-      console.log("recording is finished");
+      $('#main-button').css('background-image', 'url("../images/play.png")');
+      $('#myBarSlide').animate({'width': '1em'}, 800);
       recording = false;
       window.Stream.end();
     }
+
+    $('#main-button').on('click', function() {
+      console.log('clicked');
+      if (buttonState == 'record') {
+        startRecording();
+      } else if (buttonState == 'recording') {
+        stopRecording();
+      } else if (buttonState == 'play') {
+        console.log('play recording');
+        buttonState = 'pause';
+      } else if (buttonState == 'pause') {
+        buttonState = 'play';
+      }
+
+      //change to case switch
+    });
+
 
     function success(e) {
       audioContext = window.AudioContext || window.webkitAudioContext;
