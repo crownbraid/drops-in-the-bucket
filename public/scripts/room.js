@@ -1,9 +1,11 @@
 $(function() {
 	loadRoomDetails('badboy');
-	initiateRecordingClient(); 
-
-	temporaryBucketAnimation();
+	initiateRecordingClient();
 });
+
+
+
+
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -17,8 +19,21 @@ function loadRoomDetails(roomID) {
 		var time = convertMilliseconds(recordingLength);
 		$("#time-limit").append("<p>" + time + "</p>");
 		users = 4;
-		finishedUsers = 0;
+		finishedUsers = roomInfo.finished.length;
+		setTimeout(animatePostedAudio, 2000);
 	});
+}
+
+function animatePostedAudio() {
+	var functions = roomInfo.finished.map(function(submission, i) {
+		return function() {
+			$('#submitted-by').css({opacity: 0}).text('submitted by: ' + submission)
+				.animate({opacity: 1}, 1600);
+			animateWater(1000);
+			setTimeout(functions[i + 1], 1600);
+		};		
+	});
+	functions[0]();
 }
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -318,9 +333,9 @@ String.prototype.toHHMMSS = function () {
 //temporary bucket displays
 
 function temporaryBucketAnimation() {
-	$('#bucket-interface').show().animate({'height': '29.6em'}, 500, function() {
+	/* $('#bucket-interface').show().animate({'height': '29.6em'}, 500, function() {
 		$('#bucket-interface').animate({'opacity': '1'}, 500);
-	});
+	}); */
 }
 
 function hideBucket() {

@@ -13,7 +13,11 @@ app.get('/room/:roomid', function(req, res) {
         'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
         'time': 23000,
         'status': "unfinished",
-        'users': {}
+        'finished': [
+            'alan_yum',
+            'cool_head',
+            'realgreatguy'
+        ]
     }
 	res.json(roomInfo);
 });
