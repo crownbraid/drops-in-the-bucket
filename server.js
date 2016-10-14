@@ -11,7 +11,7 @@ app.get('/room/:roomid', function(req, res) {
         'roomid': req.params.roomid,
         'roomname': "My First Room",
         'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
-        'time': 0.10,
+        'time': 23000,
         'status': "unfinished",
         'users': {}
     }
