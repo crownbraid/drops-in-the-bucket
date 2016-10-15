@@ -1,89 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Drops in the Bucket</title>
-	<link rel="stylesheet" href="/style/index.css">
-	<script type="text/javascript" src="/scripts/jquery-2.2.3.js"></script>
-	<script type="text/javascript" src="/scripts/index.js"></script>
-	<script type="text/javascript" src="/scripts/MaskedPassword.js"></script>
-</head>
-<body>
-	<div class="popup" id="room-reg">
-		<div id="roomreg-popup">
-			<form action="#" id="roomreg-form" method="post" name="roomreg-form">
-				<p class="close" onclick ="div_hide('room-reg')">X</button>
-				<h2>Contact Us</h2>
-				<hr>
-				<input id="roomName" name="roomName" placeholder="Name Your Room" type="text">
-				<input id="invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text">
-				<input id="timeLimit" name="timeLimit" placeholder="Time Limit" type="text">
-				<textarea id="roomRules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
-				<!-- href for later: javascript:%20check_empty() -->
-				<a href="room.html" id="submit" target="blank">Create Room</a>
-			</form>
-		</div>
-	</div>
-	<div class="popup" id="reg">
-		<div id="reg-popup">
-			<form action="#" id="reg-form" method="post" name="reg-form">
-				<p class="close" onclick ="div_hide('reg')">X</button>
-				<h2>Registration</h2>
-				<hr>
-				<label for="pword">Username:</label>
-				<input id="reg-userName" name="userName" placeholder="Choose a Username" type="text">
-				<label for="pword">Password:</label>
-				<span>
-					<input type="hidden" name="pword" />
-					<input id="reg-userPassword" name="userPassword" placeholder="Choose a Password" type="text" class="masked">
-				</span>
-				<label for="pword">Email:</label>
-				<input id="reg-userEmail" name="userEmail" placeholder="What's your Email?" type="text">
-				<!-- href for later: javascript:%20check_empty() -->
-				<a href="index.html" id="submit" target="blank">Register My Account</a>
-			</form>
-		</div>
-	</div>
-	<header>
-		<h1 id="title">drops in the bucket</h1>
-		<div id="about">Drops in the Bucket is a tool for gathering sounds from a distance, and stirring them together. We recommend you approach your project like an improvisation game: invite your friends, get to know their style, and designate rules that challenge your ensemble. Drops In The Bucket is a tool for quick and easy long-distance collaborative sound improvisation.
- </div>
-	</header>
-	<section id="account-manager">
-		<div id="login">
-			<form action="#" id="login-form" method="post" name="roomreg-form">
-				<div id="login-details">
-					<span><input id="userName" name="userName" placeholder="Enter your Username" type="text"></span>
-					<span><input id="password" name="password" placeholder="Enter your Password" type="text"></span>
-				</div>
-			</form>
-			<button id="login-submit" onclick="div_hide('login'); div_show('user-manager'); load_userInfo(alan)">Login</submit>
-			<button id="register-submit" onclick="div_show('reg')">Register</button>
-		</div>
-		<div id="user-manager">
-			<div id="user-info">
-				<p id="user-greeting"></p></br>
-				<div id="user-rooms">
-					<table id="rooms-table">
-					</table>
+	<head>
+		<meta charset="UTF-8">
+		<title>Drops in the Bucket</title>
+		<script type="text/javascript" src="/scripts/jquery-2.2.3.js"></script>
+		<script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script> 
+		<script type="text/javascript" src="/scripts/index.js"></script>
+		
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<link rel="stylesheet" href="/style/index.css">
+	</head>
+	<body>
+		<div id="content">
+			<div class="popup" id="room-reg">
+				<div id="roomreg-popup">
+					<form action="#" id="roomreg-form" method="post" name="roomreg-form">
+						<p class="close" onclick ="div_hide('room-reg')">X</button>
+						<h2>Contact Us</h2>
+						<hr>
+						<input id="roomName" name="roomName" placeholder="Name Your Room" type="text">
+						<input id="invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text">
+						<input id="timeLimit" name="timeLimit" placeholder="Time Limit" type="text">
+						<textarea id="roomRules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
+						<!-- href for later: javascript:%20check_empty() -->
+						<a href="room.html" id="submit" target="blank">Create Room</a>
+					</form>
 				</div>
 			</div>
-			<button onclick="div_show('room-reg')">Create New Room</button>
-		</div>
-	</section>
-	<script type="text/javascript">
-	
-		//apply masking to the demo-field
-		//pass the field reference, masking symbol, and character limit
-		new MaskedPassword(document.getElementById("password"), '\u25CF');
-	
-		//test the submitted value
-		document.getElementById('login-form').onsubmit = function()
-		{
-			alert('pword = "' + this.pword.value + '"');
-			return false;
-		};
-	
-	</script>
-</body>
+			<section id="bucket-interface">
+				<div id="water">
+					<div id="water-top">
+						<div id="submitted-by"></div>
+						<img id="water-top-image" src="/images/water-top.png">
+					</div>
+				</div>
+				<img id="bucket" src="/images/bucket.png">
+				<button id="goHome"></button>
+			</section>
+			<header>
+				<h1 id="title">drops in the bucket</h1>
+			</header>
+		    <section id="user-interaction">
+		    	<div id="room-info">
+			        <div id="rules"></div>
+		      	</div>
+				<div id="audioplayer">
+					<audio class="audio">
+					    <source src="combinedfiles.wav" type="audio/wav">
+					</audio>
+			    	<div id="myProgress">
+			    		<div id="recordingProgress"></div>
+						<div id="myBar">
+							<div id="myBarSlide"></div>
+			    		</div>
+			    		<input type="range" step="any" class="seekbar"></input>
+			    	</div>
+				</div>
+		    	<div id="time-limit">
+		    		</br>
+		    		<div id="time-display">
+		    			<div id="recorded-time">
+			    			<span id="hours"></span>:
+			    			<span id="minutes"></span>:
+			    			<span id="seconds"></span>
+		    			</div>
+		    		</div>
+		    		<div id="room-time"></div>
+		    	</div>
+		    </section>
+		    <div id="buttons">
+		    	<button id='reject-button' onclick='reject()'></button>
+		    	<button id='main-button'></button>
+		    	<button id='approve-button' onclick='approve()'></button>
+		    </div>
+			<div id="about">Drops in the Bucket is a tool for gathering sounds from a distance, and stirring them together. We recommend you approach your project like an improvisation game: invite your friends, get to know their style, and designate rules that challenge your ensemble. Drops In The Bucket is a tool for quick and easy long-distance collaborative sound improvisation.
+ 			</div>
+			<section id="account-manager">
+				<div id="login">
+					<form action="#" id="login-form" method="post" name="roomreg-form">
+						<div id="login-details">
+							<span><input id="userName" name="userName" placeholder="Enter your Username" type="text"></span>
+							<span><input id="password" name="password" placeholder="Enter your Password" type="text"></span>
+						</div>
+					</form>
+					<button id="login-submit">Login</submit>
+					<button id="register-submit" onclick="div_show('reg')">Register</button>
+				</div>
+				<div id="user-manager">
+					<div id="user-info">
+						<p id="user-greeting"></p>
+						<div id="room-cat">
+								<span id="myRooms">Current Rooms</span>
+								<span id="myInvites">Invitations</span>
+						</div>
+						<div id="user-rooms">
+							<table id="rooms-table">
+							</table>
+						</div>
+					</div>
+					<button onclick="div_show('room-reg')">Create New Room</button>
+				</div>
+			</section>
+	    </div> 
+	</body>
 </html>
+
+
+
+<!--
+
+			<div class="popup" id="reg">
+				<div id="reg-popup">
+					<form action="#" id="reg-form" method="post" name="reg-form">
+						<p class="close" onclick ="div_hide('reg')">X</button>
+						<h2>Registration</h2>
+						<hr>
+						<label for="pword">Username:</label>
+						<input id="reg-userName" name="userName" placeholder="Choose a Username" type="text">
+						<label for="pword">Password:</label>
+						<span>
+							<input type="hidden" name="pword" />
+							<input id="reg-userPassword" name="userPassword" placeholder="Choose a Password" type="text" class="masked">
+						</span>
+						<label for="pword">Email:</label>
+						<input id="reg-userEmail" name="userEmail" placeholder="What's your Email?" type="text">
+						href for later: javascript:%20check_empty()
+						<a href="index.html" id="submit" target="blank">Register My Account</a>
+					</form>
+				</div>
+			</div>
+
+-->

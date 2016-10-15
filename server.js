@@ -21,18 +21,15 @@ app.get('/room/:roomid', function(req, res) {
     }
 	res.json(roomInfo);
 });
-/*
+
 app.get('/user/:username', function(req, res) {
-    var users = rooms[eq.params.roomid];
+    var user = users[req.params.username];
 	var userInfo = {
         'username': req.params.username,
-        'rooms': [
-	        { 'roomid': null, 'userstatus': null}
-        ]
+        'rooms': user.rooms
     }
-	res.json(userInfo)
+	res.json(userInfo);
 });
-*/
 
 
 // res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
@@ -89,3 +86,49 @@ var rooms = {
     }
 }
 */
+
+var users = {
+    "real_Cool_Alan": {
+        rooms: [
+            {
+                name: "My First Room",
+                rule: "be very careful",
+                status: "unfinished",
+                url: "/room.html",
+                users: [
+
+                ]
+            },
+            {
+                name: "My Second Room",
+                rule: "don't be very careful",
+                status: "finished",
+                url: "/room.html"
+            },
+            {
+                name: "My Third Room",
+                rule: "don't be dumb",
+                status: "unfinished",
+                url: "/room.html"
+            },
+            {
+                name: "Best Room Ever",
+                rule: "be absolutely perfect",
+                status: "finished",
+                url: "/room.html"
+            },
+            {
+                name: "Dumbest Room ",
+                rule: "you're alright",
+                status: "finished",
+                url: "/room.html"
+            },
+            {
+                name: "YESSSSsss",
+                rule: "give up already",
+                status: "unfinished",
+                url: "/room.html"
+            }
+        ]
+    }
+}
