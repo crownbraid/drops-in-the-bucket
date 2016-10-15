@@ -208,6 +208,7 @@ function animateInterfaceInversion(direction, callback) {
 		elementOff = $('#room-info');
 		elementOn = $('#audioplayer');
 		$('#recordingProgress').css('width', '0%');
+		$('#recorded-time').slideDown('slow');
 	} else if (direction == 'showRoomDetails') {
 		elementOff = $('#audioplayer');
 		elementOn = $('#room-info');
@@ -238,6 +239,7 @@ function animatePlaybackInterfaceDisplay() {
 function cancelRecordingDisplay() {
 	$('*').stop(true, false);
 	animateWater(500, true);
+	$('#recorded-time').slideUp('slow');
 	$('#recordingProgress').animate({'width': '0%'}, 250, function() {
 		animateInterfaceInversion('showRoomDetails', function() {setTimeout(changeButton, 700);});
 	});
@@ -339,7 +341,18 @@ function temporaryBucketAnimation() {
 }
 
 function hideBucket() {
-	$('#bucket-interface').animate({'height': '0em'}, 400, function() {
-		$('#bucket-interface').hide();
-	});
+	if (confirm("Are you sure you want to exit?")) {
+		$('#bucket-interface').animate({'height': '0em'}, 400, function() {
+			$('#bucket-interface').hide();
+		});
+		$('#main-button').delay(170).animate({'margin-top': '1em'}, 125, 'swing', function() {
+			$('#main-button').css('z-index', '-1');
+			$('#buttons').animate({'margin-top': '-3em'}, 75, 'swing', function() {
+				$('#buttons').hide();
+			});
+		});
+		$('#user-interaction').delay(200).animate({'height': '-0'}, 150, 'swing', function() {
+			$('#user-interaction > *').hide();
+		});
+	}
 }

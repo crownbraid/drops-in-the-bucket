@@ -9,11 +9,13 @@ binaryServer = BinaryServer({port: 9002});
 binaryServer.on('connection', function(client) {
   client.on('stream', function(stream, meta) {
 
+    // get from elsewhere
     var username = "real_cool_dude";
-    var time = Date.now();
     var roomname = 'room1';
     var numUsers = 4;
     var duration = 10000;
+
+    var time = Date.now();
 
     var roomAddress = './data/recordings/' + roomname + "/";
     if (!fs.existsSync(roomAddress)){
