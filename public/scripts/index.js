@@ -31,9 +31,9 @@ function show_user_rooms(username) {
 	$.ajax({url: "http://localhost:8080/user/" + username}).done(function(data) { 
 		userInfo = data; 
 		userInfo.rooms.forEach(function(room) {
-			var roomLink = "<a onclick='openRoom()' target='_blank'>";
-			var roomInfo = "<tr><td class='room-info room-info-name'>" + roomLink + room.name + ":</a></td>";
-			roomInfo += "<td class='room-info'> " + room.rule + " | status: " + room.status + "</td></tr>"
+			var roomLink = '<a onclick="getRoomDetails(\'' + room.roomid + '\')">';
+			var roomInfo = "<tr class='room-row'><td class='room-name'>" + roomLink + room.roomname + ":</a></td>";
+			roomInfo += "<td class='room-details'> " + room.rule + " | status: " + room.status + "</td></tr>"
 			$(roomInfo).appendTo("#rooms-table");
 		});
 	});
@@ -45,25 +45,28 @@ function show_user_rooms(username) {
 
 var roomInfo, userInfo, recordingLength, users, finishedUsers;
 
-function loadRoomDetails(roomID) {
+function getRoomDetails(roomID) {
 	$.ajax({url: "http://localhost:8080/room/" + roomID}).done(function(data) {
 		roomInfo = data; 
-		$("#rules").text("Rules: " + roomInfo.rule);
-		recordingLength = roomInfo.time;
-		var time = convertMilliseconds(recordingLength);
-		$("#room-time").text(time);
-		users = 4;
-		finishedUsers = roomInfo.finished.length;
-		setTimeout(animatePostedAudio, 3000);
-		initiateRecordingClient();
+		loadRoomDetails();
 	});
 }
 
+function loadRoomDetails() {
+	$("#rules").text("Rules: " + roomInfo.rule);
+	recordingLength = roomInfo.time;
+	var time = convertMilliseconds(recordingLength);
+	$("#room-time").text(time);
+	users = roomInfo.users;
+	finishedUsers = roomInfo.finished.length;
+	openRoom();
+}
+
 function animatePostedAudio() {
-	var functions = roomInfo.finished.map(function(submission, i) {
+	var functions = roomInfo.finished.map(function(submitter, i) {
 		return function() {
-			$('#submitted-by').css({opacity: 0}).text('submitted by: ' + submission)
-				.animate({opacity: 1}, 1600);
+			$('#submitted-by').css({'opacity': 0}).text('submitted by: ' + submitter)
+				.animate({'opacity': 1}, 1600);
 			animateWater(1000);
 			timeOuts.push(setTimeout(functions[i + 1], 1600));
 		};		
@@ -412,7 +415,8 @@ function closeRoom() {
 
 function openRoom() {	
 	endAllDisplayChanges();
-	loadRoomDetails('badboy');
+	$('#submitted-by').css('opacity', 0);
+	setTimeout(animatePostedAudio, 1000);
 	$('#account-manager, #about').slideUp('150');
 	$('#bucket-interface').show().animate({'height': '29.6em'}, 400, function() {
 		$('#user-interaction').delay(200).animate({'height': '6.5em'}, 200);
@@ -421,10 +425,15 @@ function openRoom() {
 			$('#buttons').animate({'margin-top': '1em'}, 75, 'swing', function() {
 				$('#buttons > *').css('z-index', '1');
 				$('#buttons').animate({'margin-top': '-3em'}, 125, 'swing');
+				initiateRecordingClient();
 			});
 		});
 	});
 }
+
+//			.promise().then(function() {
+//				setTimeout(animatePostedAudio, 1000);
+//			});
 
 function endAllDisplayChanges() {
 	$('*').stop()

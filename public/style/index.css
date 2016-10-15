@@ -152,6 +152,15 @@ html {
 	display: inline-block;
 	text-align: left;
 }
+#rooms-table {
+	overflow-x: auto;
+}
+.room-row {
+	max-height: 2em;
+}
+.room-name {
+	width: 25%;
+}
 #rules {
 	width: 85%;
 }

@@ -6,27 +6,16 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 
 app.get('/room/:roomid', function(req, res) {
-    // var room = rooms[eq.params.roomid];
-	var roomInfo = {
-        'roomid': req.params.roomid,
-        'roomname': "My First Room",
-        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
-        'time': 23000,
-        'status': "unfinished",
-        'finished': [
-            'alan_yum',
-            'cool_head',
-            'realgreatguy'
-        ]
-    }
+    var roomInfo = rooms[req.params.roomid];
 	res.json(roomInfo);
 });
 
 app.get('/user/:username', function(req, res) {
     var user = users[req.params.username];
+    var userRooms = user.rooms.map(function(room) {return rooms[room];});
 	var userInfo = {
         'username': req.params.username,
-        'rooms': user.rooms
+        'rooms': userRooms
     }
 	res.json(userInfo);
 });
@@ -38,97 +27,92 @@ app.listen(process.env.PORT || 8080);
 
 exports.app = app;
 
-
-
-/*
 var rooms = {
-    room1: {
-            name: "My First Room",
-            rule: "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
-            time: 0.10,
-            status: "unfinished",
-            url: "/room.html"
+    'fdjskaskdjf': {
+        'roomid': 'fdjskaskdjf',
+        'roomname': "My First Room",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 7, 
+        'finished': [
+            'alan_yum',
+            'cool_head',
+            'realgreatguy'
+        ]
     },
-    room2: {
-            name: "My Second Room",
-            rule: "don't be very careful",
-            time: 1.00,
-            status: "finished",
-            url: "/room.html"
+    'asdfdsasdf': {
+        'roomid': 'asdfdsasdf',
+        'roomname': "My second Room",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 6,
+        'finished': [
+            'bananahead',
+            'bastard',
+            'cheesyticks'
+        ]
     },
-    room3: {
-            name: "My Third Room",
-            rule: "don't be dumb",
-            time: 2.00,
-            status: "unfinished",
-            url: "/room.html"
+    'oiwrkjndsfmkldfg': {
+        'roomid': 'oiwrkjndsfmkldfg',
+        'roomname': "Whatever",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 7,
+        'finished': [
+            'alan_yum',
+            'stupidpotato',
+            'realgreatguy'
+        ]
     },
-    room4: {
-            name: "Best Room Ever",
-            rule: "be absolutely perfect",
-            time: 15.00,
-            status: "finished",
-            url: "/room.html"
+    'iuertknfdjiofdg': {
+        'roomid': 'iuertknfdjiofdg',
+        'roomname': "That's Silly",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 11,
+        'finished': [
+            'celebration',
+            'greatdisco',
+            'whaaaaaaa',
+            'iuhejkndsfgfd',
+            'wuysdnfdfijodfg',
+            'stupidpotato',
+            'realgreatguy'
+        ]
     },
-    room5: {
-            name: "Dumbest Room ",
-            rule: "you're alright",
-            time: 4.00,
-            status: "finished",
-            url: "/room.html"
+    'qpskdfgn': {
+        'roomid': 'qpskdfgn',
+        'roomname': "Dumb Little Room",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 6,
+        'finished': [
+            'uehr',
+        ]
     },
-    room6: {
-            name: "YESSSSsss",
-            rule: "give up already",
-            time: 3.00,
-            status: "unfinished",
-            url: "/room.html"
-    }
+    'ucjhidfn': {
+        'roomid': 'ucjhidfn',
+        'roomname': "Great Time!",
+        'rule': "Hey guys, how are you doing? The rules for this project: record as quietly as possible. You can make a sound every thirty seconds or so if you want. That's it. Good luck!",
+        'time': 23000,
+        'status': "unfinished",
+        'users': 4,
+        'finished': [
+            'alan_yum',
+            'cool_head',
+            'realgreatguy'
+        ]
+    },
 }
-*/
+
 
 var users = {
     "real_Cool_Alan": {
-        rooms: [
-            {
-                name: "My First Room",
-                rule: "be very careful",
-                status: "unfinished",
-                url: "/room.html",
-                users: [
-
-                ]
-            },
-            {
-                name: "My Second Room",
-                rule: "don't be very careful",
-                status: "finished",
-                url: "/room.html"
-            },
-            {
-                name: "My Third Room",
-                rule: "don't be dumb",
-                status: "unfinished",
-                url: "/room.html"
-            },
-            {
-                name: "Best Room Ever",
-                rule: "be absolutely perfect",
-                status: "finished",
-                url: "/room.html"
-            },
-            {
-                name: "Dumbest Room ",
-                rule: "you're alright",
-                status: "finished",
-                url: "/room.html"
-            },
-            {
-                name: "YESSSSsss",
-                rule: "give up already",
-                status: "unfinished",
-                url: "/room.html"
-            }
-        ]
+        'rooms': ['fdjskaskdjf', 'fdjskaskdjf', 'oiwrkjndsfmkldfg', 'iuertknfdjiofdg', 'qpskdfgn', 'ucjhidfn']
     }
 }
