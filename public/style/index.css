@@ -10,6 +10,9 @@ html {
 	margin-top: 3em;
 	font-family: 'Lato', sans-serif;
 }
+#createRoom {
+	display: none;
+}
 
 #about {
 	width: 53%;
@@ -19,11 +22,11 @@ html {
 	line-height: 1.5em;
 }
 #account-manager {
-	width: 45%;
+	padding: 1em;
 	border: .1em solid black;
+	width: 45%;
 	margin: .5em auto;
 	font-size: 1.5em;
-	padding: 1em;
 }
 #login-details > * {
 	display: inline-block;
@@ -31,6 +34,9 @@ html {
 }
 #user-info {
 	width: 100%;
+}
+#registration-details {
+	display: none;
 }
 #user-manager {
 	display: none;
@@ -60,10 +66,10 @@ html {
 /* bucket */
 #bucket-interface {
 	width: 20em;
-	height: 0;
 	opacity: 1;
 	position: relative;
 	margin: 0 auto;
+	height: 29.6em;
 	display: none;
 }
 #bucket-interface > * {
@@ -72,9 +78,11 @@ html {
 #bucket {
 	width: 106%;
 	left: 0;
-	border-bottom: 1em solid white;
+	display: none;
+	opacity: 0;
 }
 #water {
+	display: none;
 	bottom: 0;
 	border-bottom: .6em solid #B5C9FD;
 }
@@ -178,6 +186,7 @@ html {
 	right: 0;
 	margin-right: -10em;
 	z-index: 2;
+	opacity: 0;
 }
 #time-limit {
 	color: green;
@@ -233,50 +242,9 @@ html {
 #recorded-time {
 	display: none;
 }
-
-
-
-
-
-
-
-
-
-/* popups     */
-.popup {
-	width: 100%;
-	height: 100%;
-	opacity: 1.0;
-	top: 0;
-	left: 0;
-	display: none;
-	position: fixed;
-	background-color: #313131;
-	overflow: auto;
-}
 .close {
-	position:absolute;
 	right: 3%;
 	cursor: pointer;
-}
-div#registration-popup {
-	font-family:'Raleway',sans-serif;
-	margin-top: 05%;
-}
-#roomreg-form, #reg-form {
-	max-width: 450px;
-	min-width: 300px;
-	padding: 10px 50px;
-	border: 2px solid gray;
-	border-radius: 10px;
-	background-color: white;
-	position: absolute;
-	transform: translate(50%, 50%);
-}
-#roomRules {
-	width: 100%;
-	height: 20em;
-	margin-top: 2em;
 }
 input[type=text] {
 	width:100%;
@@ -284,4 +252,8 @@ input[type=text] {
 	margin-top:30px;
 	border:1px solid #ccc;
 	padding-left:40px;
+}
+#roomreg-form span {
+	display: inline-block;
+	width: 40%;
 }

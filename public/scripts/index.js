@@ -1,8 +1,70 @@
 $(function() {
-	$('#login-submit').on('click', function() {
-		div_hide('login'); 
+	// account management
+    $('#login-submit').on('click', function(e) {
+    	e.preventDefault();
+        ajax.getAccount();
+    });
+    var register = false;
+    $('#register-submit').on('click', function(e) {
+        e.preventDefault();
+        if (register) {
+            ajax.registerAccount();
+            div_hide('login'); 
+			div_show('user-manager');
+        } else {
+            // $("#regform").attr("method", "post").attr("action", "/register");
+            $('#registration-details').show();
+            register = true;
+        }
+    });
+    $('#logout').on('click', function(e) {
+        e.preventDefault();
+        console.log('??')
+        $.get('/accounts/logout');
+        div_show('login'); 
+		div_hide('user-manager'); 
+    });
+    //  room manager
+    $('#submitroom').on('click', function(e) {
+        e.preventDefault();
+        ajax.createRoom();
+    });
+    $('#roomInfo').on('click', '.roombutton', function(e) {
+        e.preventDefault();
+        ajax.getRoom(this.id);
+    });
+    $('#newRoom').on('click', function(e) {
+        e.preventDefault();
+        div_hide('user-manager'); 
+		div_show('createRoom'); 
+    });
+    $('.close').on('click', function(e) {
+        e.preventDefault();
+        clientOn = false;
+		div_hide('createRoom'); 
 		div_show('user-manager'); 
-		load_userInfo("real_Cool_Alan");
+    });
+
+
+	$('#main-button').on('click', function() {
+		switch(buttonState) {
+		    case "record":
+		        prepareRecorder(); break;
+		    case "stop":
+		        cancelRecording(); break;
+		    case "play":
+		        playRecording(); break;
+		    case "pause":
+		    	pauseRecording(); break;
+		    default:
+		        console.log("buttonState Error");
+		}
+	});
+
+	$('#goHome').on('click', function() {
+		if (confirm("Are you sure you want to exit?")) {
+			closeRoom();
+		}
 	});
 });
 
@@ -28,39 +90,15 @@ function show_userName(username) {
 	$("#user-greeting").text("Hello " + username + ", how are you?")
 }
 function show_user_rooms(username) {
-	$.ajax({url: "http://localhost:8080/user/" + username}).done(function(data) { 
-		userInfo = data; 
-		userInfo.rooms.forEach(function(room) {
-			var roomLink = '<a onclick="getRoomDetails(\'' + room.roomid + '\')">';
-			var roomInfo = "<tr class='room-row'><td class='room-name'>" + roomLink + room.roomname + ":</a></td>";
-			roomInfo += "<td class='room-details'> " + room.rule + " | status: " + room.status + "</td></tr>"
-			$(roomInfo).appendTo("#rooms-table");
-		});
+	userInfo.rooms.forEach(function(room) {
+		var roomLink = '<a onclick="ajax.getRoom(\'' + room._id + '\')">';
+		var roomInfo = "<tr class='room-row'><td class='room-name'>" + roomLink + room.name + ":</a></td>";
+		roomInfo += "<td class='room-details'> " + room.rules + " | status: " + room.status + "</td></tr>"
+		$(roomInfo).appendTo("#rooms-table");
 	});
 }
-
-
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-var roomInfo, userInfo, recordingLength, users, finishedUsers;
-
-function getRoomDetails(roomID) {
-	$.ajax({url: "http://localhost:8080/room/" + roomID}).done(function(data) {
-		roomInfo = data; 
-		loadRoomDetails();
-	});
-}
-
-function loadRoomDetails() {
-	$("#rules").text("Rules: " + roomInfo.rule);
-	recordingLength = roomInfo.time;
-	var time = convertMilliseconds(recordingLength);
-	$("#room-time").text(time);
-	users = roomInfo.users;
-	finishedUsers = roomInfo.finished.length;
-	openRoom();
-}
 
 function animatePostedAudio() {
 	var functions = roomInfo.finished.map(function(submitter, i) {
@@ -77,151 +115,126 @@ function animatePostedAudio() {
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-var buttonState = 'record', timeOuts = [];
+var buttonState = 'record', timeOuts = [], clientOn = false, recording = false, 
+recordingInterfaceDisplayed = false;
 
-function initiateRecordingClient() {
-	var client = new BinaryClient('ws://localhost:9002');
-
-  	client.on('open', function() {
-	    if (!navigator.getUserMedia) {
-	    	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-	    	navigator.mozGetUserMedia || navigator.msGetUserMedia;
-		}
-	    if (navigator.getUserMedia) {
-	    	navigator.getUserMedia({audio:true}, success, function(e) {
-	        	alert('Error capturing audio.');
-	    	});
-		} else {
-			alert('getUserMedia not supported in this browser.');
-		}
-
-	    var recording = false;
-	    var recordingInterfaceDisplayed = false;
-
-	    $('#main-button').on('click', function() {
-			switch(buttonState) {
-			    case "record":
-			        prepareRecorder(); break;
-			    case "stop":
-			        cancelRecording(); break;
-			    case "play":
-			        playRecording(); break;
-			    case "pause":
-			    	pauseRecording(); break;
-			    default:
-			        console.log("buttonState Error");
-			}
-	    });
-	    $('#goHome').on('click', function() {
-			if (confirm("Are you sure you want to exit?")) {
-				closeRoom();
-				client.disconnect();
-			}
-	    });
-
-	    function prepareRecorder() {
-			recording = true;
-			if (recordingInterfaceDisplayed) {
-				startRecording();
-			} else {
-				animateInterfaceInversion('showRecorder', startRecording);
-			}
-	    }
-
-		function startRecording() {
-			timeOuts.push(setTimeout(function () {
-				buttonState = 'stop';
-				changeButton();
-				window.Stream = client.createStream();
-				timeOuts.push(setTimeout(function() {endRecording()}, recordingLength));
-				animateRecordingProgress();
-			}, 1000));
-		}
-
-		function cancelRecording() {
-			recording = false;
-			timeOuts.forEach(function(timeOut) {clearTimeout(timeOut);});
-			cancelRecordingDisplay();
-			buttonState = 'record';
-		}
-
-	    function endRecording() {
-	    	recording = false;
-			displayPlaybackInterface() 
-			window.Stream.end();
-	    }
-
-	    //audio player
-	    function displayPlaybackInterface() {
-	    	animatePlaybackInterfaceDisplay();
-	    	buttonState = 'play';
-	    	changeButton();
-	    	toggleApprovalButtons();
-			addPlaystateEventHandlers();
-	    }
-
-	    var audio = $("#audioplayer .audio"), seekbar = $('#audioplayer .seekbar');
-	    var audioState = audio[0];
-	    var bar = document.getElementById("myBar"); 
-
-	    function addPlaystateEventHandlers() {
-	        seekbar.attr('min', audioState.startTime);
-	        seekbar.attr('max', audioState.duration);
-	        seekbar.on('change', function() {audioState.currentTime = seekbar.val();});
-	        audioState.addEventListener('timeupdate', updateUI);
-	        audio.on('ended', pauseRecording);
-		}
-
-	    function playRecording() {
-			$('#recorded-time').hide();
-			audio.trigger('play');
-			buttonState = 'pause';
-			changeButton();
-	    }
-	    function pauseRecording() {
-			audio.trigger('pause');
-			buttonState = 'play';
-			changeButton();
-	    }
-		function updateUI() {
-			seekbar.val(audioState.currentTime);
-			$('#time-display').text(audioState.currentTime.toString().toHHMMSS());
-			bar.style.width = (audioState.currentTime / audioState.duration * 100) * 0.96 + '%'; 
-		}
+var client = new BinaryClient('ws://localhost:9002');
 
 
-	    function success(e) {
-	      audioContext = window.AudioContext || window.webkitAudioContext;
-	      context = new audioContext();
+client.on('open', function() {
+    if (!navigator.getUserMedia) {
+    	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    	navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	}
+    if (navigator.getUserMedia) {
+    	navigator.getUserMedia({audio:true}, success, function(e) {
+        	alert('Error capturing audio.');
+    	});
+	} else {
+		alert('getUserMedia not supported in this browser.');
+	}
+});
 
-	      // the sample rate is in context.sampleRate
-	      audioInput = context.createMediaStreamSource(e);
 
-	      var bufferSize = 2048;
-	      recorder = context.createScriptProcessor(bufferSize, 1, 1);
-
-	      recorder.onaudioprocess = function(e){
-	        if(!recording) return;
-	        var left = e.inputBuffer.getChannelData(0);
-	        window.Stream.write(convertoFloat32ToInt16(left));
-	      }
-
-	      audioInput.connect(recorder)
-	      recorder.connect(context.destination); 
-	    }
-
-	    function convertoFloat32ToInt16(buffer) {
-	      var l = buffer.length;
-	      var buf = new Int16Array(l)
-
-	      while (l--) {
-	        buf[l] = buffer[l]*0xFFFF;    //convert to 16 bit
-	      }
-	      return buf.buffer
-	    }
-	});
+function prepareRecorder() {
+	recording = true;
+	if (recordingInterfaceDisplayed) {
+		startRecording();
+	} else {
+		animateInterfaceInversion('showRecorder', startRecording);
+	}
 }
 
+function startRecording() {
+	timeOuts.push(setTimeout(function () {
+		buttonState = 'stop';
+		changeButton();
+		window.Stream = client.createStream();
+		timeOuts.push(setTimeout(function() {endRecording()}, recordingLength));
+		animateRecordingProgress();
+	}, 1000));
+}
+
+function cancelRecording() {
+	recording = false;
+	cancelRecordingDisplay();
+	buttonState = 'record';
+}
+
+function endRecording() {
+	recording = false;
+	displayPlaybackInterface() 
+	window.Stream.end();
+}
+
+//audio player
+function displayPlaybackInterface() {
+	animatePlaybackInterfaceDisplay();
+	buttonState = 'play';
+	changeButton();
+	toggleApprovalButtons();
+	updatePlaystateEventHandlers();
+}
+
+var audio = $("#audioplayer .audio"), seekbar = $('#audioplayer .seekbar');
+var audioState = audio[0];
+var bar = document.getElementById("myBar"); 
+
+function updatePlaystateEventHandlers() {
+    seekbar.attr('min', audioState.startTime);
+    seekbar.attr('max', audioState.duration);
+    seekbar.on('change', function() {audioState.currentTime = seekbar.val();});
+    audioState.addEventListener('timeupdate', updateUI);
+    audio.on('ended', pauseRecording);
+}
+
+function playRecording() {
+	$('#recorded-time').hide();
+	audio.trigger('play');
+	buttonState = 'pause';
+	changeButton();
+}
+function pauseRecording() {
+	audio.trigger('pause');
+	buttonState = 'play';
+	changeButton();
+}
+function updateUI() {
+	seekbar.val(audioState.currentTime);
+	$('#time-display').text(audioState.currentTime.toString().toHHMMSS());
+	bar.style.width = (audioState.currentTime / audioState.duration * 100) * 0.96 + '%'; 
+}
+
+
+function success(e) {
+  audioContext = window.AudioContext || window.webkitAudioContext;
+  context = new audioContext();
+
+  // the sample rate is in context.sampleRate
+  audioInput = context.createMediaStreamSource(e);
+
+  var bufferSize = 2048;
+  recorder = context.createScriptProcessor(bufferSize, 1, 1);
+
+  recorder.onaudioprocess = function(e){
+    if(!recording) return;
+    var left = e.inputBuffer.getChannelData(0);
+    window.Stream.write(convertoFloat32ToInt16(left));
+  }
+
+  audioInput.connect(recorder)
+  recorder.connect(context.destination); 
+}
+
+function convertoFloat32ToInt16(buffer) {
+  var l = buffer.length;
+  var buf = new Int16Array(l)
+
+  while (l--) {
+    buf[l] = buffer[l]*0xFFFF;    //convert to 16 bit
+  }
+  return buf.buffer
+}
 
 
 
@@ -284,7 +297,7 @@ function animatePlaybackInterfaceDisplay() {
 }
 
 function cancelRecordingDisplay() {
-	$('*').stop(true, false);
+	endAllDisplayChanges();
 	animateWater(500, true);
 	$('#recorded-time').slideUp('slow');
 	$('#recordingProgress').animate({'width': '0%'}, 250, function() {
@@ -385,57 +398,60 @@ String.prototype.toHHMMSS = function () {
 
 
 
-//temporary bucket displays
-
-function temporaryBucketAnimation() {
-	/* $('#bucket-interface').show().animate({'height': '29.6em'}, 500, function() {
-		$('#bucket-interface').animate({'opacity': '1'}, 500);
-	}); */
-}
-
 function closeRoom() {
 	endAllDisplayChanges();
-	$('#bucket-interface').animate({'height': '0em'}, 400);
-	animateWater(0, true, true);
+	$('#bucket-interface').animate({'height': '0em'}, 400, function() {$(this).hide();});
+	$('#water').css('opacity', 0);
 	$('#submitted-by').css('opacity', 0);
-	$('#buttons > *').delay(170).animate({'margin-top': '1em'}, 125, 'swing', function() {
+	$('#buttons > *').delay(50).animate({'margin-top': '1em'}, 125, 'swing', function() {
 		$('#buttons > *').css('z-index', '-1');
 		$('#buttons').animate({'margin-top': '-3em'}, 75, 'swing', function() {
-			$('#buttons').hide();
+			$('#buttons > *').css('margin-top', '-3em');
+			$('#buttons').css('margin-top', '0').hide();
 		});
 	});
-	$('#user-interaction').delay(200).animate({'height': '-0'}, 150, 'swing', function() {
-		$('#user-interaction > *, #audioplayer').hide();
-		$('#bucket-interface').hide();
-		$('#about').slideDown('150', function() {
-			$('#account-manager').slideDown('150');
+	$('#user-interaction').delay(250).animate({'height': '-0'}, 300, 'swing', function() {
+		$('#user-interaction > *').hide();
+		$('#about').slideDown(150, function() {
+			$('#account-manager').animate({'border-width': '.1em'}, 20);
+			$('#account-manager').delay(20).slideDown(300);
+			$('#user-manager').delay(300).slideDown(300);
 		});
 	});
 }
-
-function openRoom() {	
+function openRoom() {
 	endAllDisplayChanges();
-	$('#submitted-by').css('opacity', 0);
+	users = roomInfo.invited;
+	recording = false, 
+	recordingInterfaceDisplayed = false;
+	finishedUsers = roomInfo.finished.length;
+	recordingLength = roomInfo.timelimit;
+	var time = convertMilliseconds(recordingLength);
+	$("#room-time").text(time);
+	$("#rules").text("Rules: " + roomInfo.rules);
+	$('#user-interaction').children().hide();
+	animateWater(0, true, true);
 	setTimeout(animatePostedAudio, 1000);
-	$('#account-manager, #about').slideUp('150');
-	$('#bucket-interface').show().animate({'height': '29.6em'}, 400, function() {
-		$('#user-interaction').delay(200).animate({'height': '6.5em'}, 200);
-		$('#room-info, #time-limit').delay(200).slideDown(200, function() {
-			$('#buttons').show();
-			$('#buttons').animate({'margin-top': '1em'}, 75, 'swing', function() {
+	$('#about').slideUp(600, 'easeInOutQuint');
+	$('#account-manager').children().slideUp(400, 'easeInOutQuint');
+	$('#account-manager').slideUp(500, 'easeInOutQuint');
+	$('#account-manager').delay(450).animate({'border-width': '0em'}, 20);
+	$('#bucket-interface').css('height', '29.6em').hide().delay(860).slideDown(360, 'easeInOutSine');
+	$('#bucket').delay(900).show().animate({'opacity': '1'}, 80);
+	$('#user-interaction').delay(500).animate({'height': '6.5em'}, 300);
+	$('#room-info, #time-limit').delay(530).slideDown(200);
+	$('#buttons').delay(600).slideDown(100, function() {
+			$('#buttons').animate({'margin-top': '1.8em'}, 180, 'swing', function() {
 				$('#buttons > *').css('z-index', '1');
-				$('#buttons').animate({'margin-top': '-3em'}, 125, 'swing');
-				initiateRecordingClient();
+				$('#buttons').animate({'margin-top': '-.2em'}, 125, 'swing');
+				$('#water').css('opacity', 1);
+				buttonState = 'record';
+				clientOn = true;
 			});
 		});
-	});
 }
 
-//			.promise().then(function() {
-//				setTimeout(animatePostedAudio, 1000);
-//			});
-
 function endAllDisplayChanges() {
-	$('*').stop()
+	$('*').stop(true, false);
 	timeOuts.forEach(function(timeOut) {clearTimeout(timeOut);});	
 }

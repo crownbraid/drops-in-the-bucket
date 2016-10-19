@@ -4,7 +4,9 @@
 		<meta charset="UTF-8">
 		<title>Drops in the Bucket</title>
 		<script type="text/javascript" src="/scripts/jquery-2.2.3.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.easing.1.3.js"></script>
 		<script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script> 
+		<script type="text/javascript" src="/scripts/ajax.js"></script>
 		<script type="text/javascript" src="/scripts/index.js"></script>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -12,31 +14,18 @@
 	</head>
 	<body>
 		<div id="content">
-			<div class="popup" id="room-reg">
-				<div id="roomreg-popup">
-					<form action="#" id="roomreg-form" method="post" name="roomreg-form">
-						<p class="close" onclick ="div_hide('room-reg')">X</button>
-						<h2>Contact Us</h2>
-						<hr>
-						<input id="roomName" name="roomName" placeholder="Name Your Room" type="text">
-						<input id="invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text">
-						<input id="timeLimit" name="timeLimit" placeholder="Time Limit" type="text">
-						<textarea id="roomRules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
-						<!-- href for later: javascript:%20check_empty() -->
-						<a href="room.html" id="submit" target="blank">Create Room</a>
-					</form>
-				</div>
-			</div>
-			<section id="bucket-interface">
-				<div id="water">
-					<div id="water-top">
-						<div id="submitted-by"></div>
-						<img id="water-top-image" src="/images/water-top.png">
+			<div id="bucket-slide">
+				<section id="bucket-interface">
+					<div id="water">
+						<div id="water-top">
+							<div id="submitted-by"></div>
+							<img id="water-top-image" src="/images/water-top.png">
+						</div>
 					</div>
-				</div>
-				<img id="bucket" src="/images/bucket.png">
-				<button id="goHome"></button>
-			</section>
+					<img id="bucket" src="/images/bucket.png">
+					<button id="goHome"></button>
+				</section>
+			</div>
 			<header>
 				<h1 id="title">drops in the bucket</h1>
 			</header>
@@ -77,18 +66,22 @@
  			</div>
 			<section id="account-manager">
 				<div id="login">
-					<form action="#" id="login-form" method="post" name="roomreg-form">
+					<form action="/login" method="post" id="regform">
 						<div id="login-details">
-							<span><input id="userName" name="userName" placeholder="Enter your Username" type="text"></span>
+							<span><input id="username" name="username" placeholder="Enter your Username" type="text"></span>
 							<span><input id="password" name="password" placeholder="Enter your Password" type="text"></span>
 						</div>
+						<div id="registration-details">
+							<span><input id="email" name="email" placeholder="Enter your Email" type="text"></span>
+						</div>
 					</form>
-					<button id="login-submit">Login</submit>
-					<button id="register-submit" onclick="div_show('reg')">Register</button>
+					<button id="login-submit">Login</button>
+					<button id="register-submit">Register</button>
+					<!-- <button id="register-submit" onclick="div_show('reg')">Register</button> -->
 				</div>
 				<div id="user-manager">
 					<div id="user-info">
-						<p id="user-greeting"></p>
+						<p id="user-greeting"></p><button id="logout">Sign Out</button><button>Update Info</button>
 						<div id="room-cat">
 								<span id="myRooms">Current Rooms</span>
 								<span id="myInvites">Invitations</span>
@@ -98,7 +91,19 @@
 							</table>
 						</div>
 					</div>
-					<button onclick="div_show('room-reg')">Create New Room</button>
+					<button id="newRoom">Create New Room</button>
+				</div>
+				<div id="createRoom">
+					<form id="roomreg-form">
+						<p class="close" onclick ="div_hide('room-reg')">X</p>
+						<span><input id="reg-roomname" name="roomname" placeholder="Name Your Room" type="text"></span>
+						<span><input id="reg-timelimit" name="timelimit" placeholder="Time Limit" type="text"></span>
+						<input id="reg-invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text">
+						<input id='reg-public'>
+						<textarea id="reg-roomrules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
+						<button id="submitroom">Create Room</button>
+						<!-- href for later: javascript:%20check_empty() -->
+					</form>
 				</div>
 			</section>
 	    </div> 
@@ -108,7 +113,7 @@
 
 
 <!--
-
+<h2>Contact Us</h2>
 			<div class="popup" id="reg">
 				<div id="reg-popup">
 					<form action="#" id="reg-form" method="post" name="reg-form">
