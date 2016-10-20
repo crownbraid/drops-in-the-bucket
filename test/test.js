@@ -8,9 +8,9 @@ var app = server.app;
 chai.use(chaiHttp);
 
 describe('Basic Server', function() {
-    it('should load a root page when hitting the root url',function(done) {
+    it('should load a root page when hitting the root url', function(done) {
         chai.request(app)
-            .get('/')
+            .get('/index.html')
             .end(function(err, res) {
                 should.equal(err, null);
                 res.should.have.status(200);
