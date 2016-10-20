@@ -10,10 +10,15 @@ html {
 	margin-top: 3em;
 	font-family: 'Lato', sans-serif;
 }
-#createRoom {
-	display: none;
+#title {
+	font-family: giro;
+	font-size: 2em;
+	letter-spacing: .8em;
+	text-align: center;
+	padding-left: .5em;
+	margin: .3em;
+	background-color: white;
 }
-
 #about {
 	width: 53%;
 	margin: .5em auto;
@@ -21,25 +26,54 @@ html {
 	font-size: 1.35em;
 	line-height: 1.5em;
 }
-#account-manager {
+#home-interface {
 	padding: 1em;
 	border: .1em solid black;
 	width: 45%;
 	margin: .5em auto;
 	font-size: 1.5em;
 }
-#login-details > * {
+input[type=text] {
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+	margin-top: 30px;
+	border: 1px solid #ccc;
+}
+
+
+/* room registration */
+#login-details > *, #roomreg1 > * {
 	display: inline-block;
 	width: 40%;
 }
 #user-info {
 	width: 100%;
 }
-#registration-details {
-	display: none;
+#roomform-contents input {
+	margin-top: 5em;
 }
+#registration-details, #reg-invitedUsers, #reg-roomrules {
+	width: 81%;
+	margin: 0 auto;
+}
+#reg-roomrules {
+	height: 8em;
+}
+#reg-roomname {
+	margin-top: 1em;
+}
+.close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	right: 3%;
+	cursor: pointer;
+}
+
+
+/* user manager */
 #user-manager {
-	display: none;
 	text-align: left;
 	line-height: 1.5;
 }
@@ -61,8 +95,6 @@ html {
 }
 
 
-
-
 /* bucket */
 #bucket-interface {
 	width: 20em;
@@ -70,7 +102,6 @@ html {
 	position: relative;
 	margin: 0 auto;
 	height: 29.6em;
-	display: none;
 }
 #bucket-interface > * {
 	position: absolute;
@@ -78,11 +109,9 @@ html {
 #bucket {
 	width: 106%;
 	left: 0;
-	display: none;
 	opacity: 0;
 }
 #water {
-	display: none;
 	bottom: 0;
 	border-bottom: .6em solid #B5C9FD;
 }
@@ -96,37 +125,9 @@ html {
 	height: 100%;
 }
 
-#audioplayer {
-	display: none;
-}
 
-/* buttons */
-#buttons {
-	display: none;
-}
 
-#buttons > * {
-	width: 75px;
-	height: 75px;
-	background-size: contain;
-	border: none;
-	margin-top: -3em;
-	z-index: -1;
-	position: relative;
-	background-color: transparent;
-	outline: none;
-}
-#main-button {
-	background-image: url("../images/record.png");
-}
-#reject-button {
-	background-image: url("../images/reject.png");
-	display: none;
-}
-#approve-button {
-	background-image: url("../images/approve.png");
-	display: none;
-}
+/* rooms */
 #goHome {
 	width: 3em;
 	height: 1.715em;
@@ -139,7 +140,6 @@ html {
 	margin-left: -65%;
 	background-image: url("../images/arrowup.png");
 }
-
 #user-interaction {
 	border: .2em solid black;
 	width: 47em;
@@ -148,10 +148,6 @@ html {
 	position: relative;
 	background-color: white;
 }
-#audioplayer {
-	display: none;
-}
-
 #room-info, #recording-timeline {
 	padding: .5em;
 	width: 84%;
@@ -172,15 +168,6 @@ html {
 #rules {
 	width: 85%;
 }
-#title {
-	font-family: giro;
-	font-size: 2em;
-	letter-spacing: .8em;
-	text-align: center;
-	padding-left: .5em;
-	margin: .3em;
-	background-color: white;
-}
 #submitted-by {
 	position: absolute;
 	right: 0;
@@ -195,10 +182,8 @@ html {
 	position: absolute;
 	width: 12%;
 }
+
 /* audio manager */
-#audioplayer .audio {
-	display: none;
-}
 #myProgress {
     position: relative;
     width: 75%;
@@ -236,24 +221,35 @@ html {
 	position: absolute;
 	margin-top: 0;
 }
-#submitted-by {
-	opacity: 0;
+
+/* buttons */
+#buttons > * {
+	width: 75px;
+	height: 75px;
+	background-size: contain;
+	border: none;
+	margin-top: -3em;
+	z-index: -1;
+	position: relative;
+	background-color: transparent;
+	outline: none;
 }
-#recorded-time {
+#main-button {
+	background-image: url("../images/record.png");
+}
+#reject-button {
+	background-image: url("../images/reject.png");
+}
+#approve-button {
+	background-image: url("../images/approve.png");
+}
+
+
+
+#registration-details, #user-manager, 
+#bucket-interface, #bucket, #water, 
+#audioplayer, .audio, #recorded-time, 
+#buttons, #reject-button, #approve-button,
+#createRoom {
 	display: none;
-}
-.close {
-	right: 3%;
-	cursor: pointer;
-}
-input[type=text] {
-	width:100%;
-	padding:10px;
-	margin-top:30px;
-	border:1px solid #ccc;
-	padding-left:40px;
-}
-#roomreg-form span {
-	display: inline-block;
-	width: 40%;
 }

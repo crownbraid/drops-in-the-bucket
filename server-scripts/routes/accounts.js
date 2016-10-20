@@ -2,7 +2,7 @@ var passport = require('passport');
 var Account = require('../../models/account');
 var Room = require('../../models/room');
 var router = require('express').Router();
-var async = require('async');
+// var async = require('async');
 
 router.post('/register', function(req, res, next) {
   console.log('registering user');

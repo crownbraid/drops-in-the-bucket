@@ -13,7 +13,7 @@ $(function() {
 			div_show('user-manager');
         } else {
             // $("#regform").attr("method", "post").attr("action", "/register");
-            $('#registration-details').show();
+            $('#registration-details').slideDown();
             register = true;
         }
     });
@@ -40,7 +40,6 @@ $(function() {
     });
     $('.close').on('click', function(e) {
         e.preventDefault();
-        clientOn = false;
 		div_hide('createRoom'); 
 		div_show('user-manager'); 
     });
@@ -63,6 +62,8 @@ $(function() {
 
 	$('#goHome').on('click', function() {
 		if (confirm("Are you sure you want to exit?")) {
+			client.close();
+			client = false;
 			closeRoom();
 		}
 	});
@@ -115,26 +116,26 @@ function animatePostedAudio() {
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-var buttonState = 'record', timeOuts = [], clientOn = false, recording = false, 
+var buttonState = 'record', timeOuts = [], client, recording = false, 
 recordingInterfaceDisplayed = false;
 
-var client = new BinaryClient('ws://localhost:9002');
-
-
-client.on('open', function() {
-    if (!navigator.getUserMedia) {
-    	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-    	navigator.mozGetUserMedia || navigator.msGetUserMedia;
-	}
-    if (navigator.getUserMedia) {
-    	navigator.getUserMedia({audio:true}, success, function(e) {
-        	alert('Error capturing audio.');
-    	});
-	} else {
-		alert('getUserMedia not supported in this browser.');
-	}
-});
-
+function openNewClient() {
+	client = new BinaryClient('ws://localhost:9002');
+	
+	client.on('open', function() {
+	    if (!navigator.getUserMedia) {
+	    	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+	    	navigator.mozGetUserMedia || navigator.msGetUserMedia;
+		}
+	    if (navigator.getUserMedia) {
+	    	navigator.getUserMedia({audio:true}, success, function(e) {
+	        	alert('Error capturing audio.');
+	    	});
+		} else {
+			alert('getUserMedia not supported in this browser.');
+		}
+	});
+}
 
 function prepareRecorder() {
 	recording = true;
@@ -413,8 +414,8 @@ function closeRoom() {
 	$('#user-interaction').delay(250).animate({'height': '-0'}, 300, 'swing', function() {
 		$('#user-interaction > *').hide();
 		$('#about').slideDown(150, function() {
-			$('#account-manager').animate({'border-width': '.1em'}, 20);
-			$('#account-manager').delay(20).slideDown(300);
+			$('#home-interface').animate({'border-width': '.1em'}, 20);
+			$('#home-interface').delay(20).slideDown(300);
 			$('#user-manager').delay(300).slideDown(300);
 		});
 	});
@@ -433,9 +434,9 @@ function openRoom() {
 	animateWater(0, true, true);
 	setTimeout(animatePostedAudio, 1000);
 	$('#about').slideUp(600, 'easeInOutQuint');
-	$('#account-manager').children().slideUp(400, 'easeInOutQuint');
-	$('#account-manager').slideUp(500, 'easeInOutQuint');
-	$('#account-manager').delay(450).animate({'border-width': '0em'}, 20);
+	$('#home-interface').children().slideUp(400, 'easeInOutQuint');
+	$('#home-interface').slideUp(500, 'easeInOutQuint');
+	$('#home-interface').delay(450).animate({'border-width': '0em'}, 20);
 	$('#bucket-interface').css('height', '29.6em').hide().delay(860).slideDown(360, 'easeInOutSine');
 	$('#bucket').delay(900).show().animate({'opacity': '1'}, 80);
 	$('#user-interaction').delay(500).animate({'height': '6.5em'}, 300);
@@ -446,7 +447,7 @@ function openRoom() {
 				$('#buttons').animate({'margin-top': '-.2em'}, 125, 'swing');
 				$('#water').css('opacity', 1);
 				buttonState = 'record';
-				clientOn = true;
+				openNewClient();
 			});
 		});
 }

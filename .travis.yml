@@ -8,7 +8,7 @@ deploy:
   on:
     repo: <YOUR REPO INFO HERE>
 services:
-	- mongodb
+	mongodb
 addons:
   apt:
     sources:

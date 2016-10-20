@@ -64,7 +64,7 @@
 		    </div>
 			<div id="about">Drops in the Bucket is a tool for gathering sounds from a distance, and stirring them together. We recommend you approach your project like an improvisation game: invite your friends, get to know their style, and designate rules that challenge your ensemble. Drops In The Bucket is a tool for quick and easy long-distance collaborative sound improvisation.
  			</div>
-			<section id="account-manager">
+			<section id="home-interface">
 				<div id="login">
 					<form action="/login" method="post" id="regform">
 						<div id="login-details">
@@ -96,13 +96,17 @@
 				<div id="createRoom">
 					<form id="roomreg-form">
 						<p class="close" onclick ="div_hide('room-reg')">X</p>
-						<span><input id="reg-roomname" name="roomname" placeholder="Name Your Room" type="text"></span>
-						<span><input id="reg-timelimit" name="timelimit" placeholder="Time Limit" type="text"></span>
-						<input id="reg-invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text">
-						<input id='reg-public'>
-						<textarea id="reg-roomrules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
-						<button id="submitroom">Create Room</button>
-						<!-- href for later: javascript:%20check_empty() -->
+						<div id="roomform-contents">
+							<div id="roomreg1">
+								<span><input id="reg-roomname" name="roomname" placeholder="Name Your Room" type="text"></span>
+								<span><input id="reg-timelimit" name="timelimit" placeholder="Time Limit" type="text"></span>
+							</div>
+							<input id="reg-invitedUsers" name="invitedUsers" placeholder="Users to Invite" type="text"></input>
+							<textarea id="reg-roomrules" name="roomRules" placeholder="Write your friends a greeting and set some rules for your room."></textarea>
+							<input id='reg-public' type="checkbox">Public?</input>
+							<button id="submitroom">Create Room</button>
+							<!-- href for later: javascript:%20check_empty() -->
+						</div>
 					</form>
 				</div>
 			</section>
