@@ -6,7 +6,7 @@ var passport = require('passport');
 var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('cookie-session');
-var binaryServer = require('./server-scripts/binaryServer.js');
+var binaryServer = require('./server-scripts/binaryserver.js');
 var path = require('path');
 
 passport.use(new LocalStrategy(Account.authenticate()));
