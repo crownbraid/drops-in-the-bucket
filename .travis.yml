@@ -7,11 +7,8 @@ deploy:
   app: Drops in the Bucket
   on:
     repo: <YOUR REPO INFO HERE>
-services:
-	mongodb
+services: mongodb
 addons:
   apt:
-    sources:
-    - mongodb-3.2-precise
-    packages:
-    - mongodb-org-server
+    sources: mongodb-3.2-precise
+    packages: mongodb-org-server
