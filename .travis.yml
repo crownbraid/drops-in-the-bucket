@@ -3,10 +3,10 @@ node_js: node
 deploy:
   provider: heroku
   api_key:
-    secure: <YOUR ENCRYPTED KEY HERE>
-  app: Drops in the Bucket
+    secure: oY+MXpbOGjkXUBpQEe1h5mOvsG7CgruY50WBnvYVJb6FxlXrsk5OjyJBYPz12g5XoNp/3t5pkD2kXfkZJGOiGrEPT1KxT3wb62uNb84+InixdIwH+A+ytAgsDaKdiAE/KzYl4tdKdHWJjjbD7THtkYq28gYpllueyY43fiMf8K0pMKmh72Jv5KdPd/lP3HrA2pI11aWk0tHD+C0ChkD5SxyIpp+gsJaHOMtiIy1GKC1rtJ+difZG4YujY7TuVnVgIN/IMwAhYetK2kSqmA3Z3DkvIi0CyNtQHGr6xq7aFHxK/+H0kJUNyrwcltp0fwTqsB9a/x93MofDR3MiKMnQZBXSfAwv8LkoE/iHYVzwpBveFu1MSxCWhsI+x6fUeO3fssVsdg22Rtg/JmaOVvdrhNXeivEeVpb1a9ObJ6Jq3TeGIxYcy2oLVWRqSlmM04g1L/36+oWohSKpX+Ay51XewfGCGRt8zmKwV7I2q/8tln1igy0simyMA/sF0Au+/JlM7h0xaHwxmBEVc+2Ae/lT++UifKtZhMP09WxNSKEOfVvMh373kqqqBykf1Vl+eD84TLoJISjZle7jPcm9I9YRqbnhRaWC8B3GzH9ZLFY1oXYs5zjHUKGBSfjEtZ+ZC65PoE4hTBVSG3v8CPTUV7+t03erKvGl6t/3qWPwD3Wlado=
+  app: drops-in-the-bucket
   on:
-    repo: <YOUR REPO INFO HERE>
+    repo: oilylyme/drops-in-the-bucket
 services: mongodb
 addons:
   apt:

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "mkdir": "mkdir -p build",
     "clean": "rm -rf build",
     "test": "mocha",
