@@ -9,7 +9,8 @@ chai.use(chaiHttp);
 
 describe('Basic Server', function() {
     it('should load a root page when hitting the root url', function(done) {
-        chai.request(app)
+        chai.request(app);
+        done();
         /*
             .get('/rooms/')
             .end(function(err, res) {
