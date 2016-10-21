@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "4.6.0"
+  },
   "scripts": {
     "start": "node server.js",
     "mkdir": "mkdir -p build",
