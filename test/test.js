@@ -10,12 +10,14 @@ chai.use(chaiHttp);
 describe('Basic Server', function() {
     it('should load a root page when hitting the root url', function(done) {
         chai.request(app)
-            .get('/index.html')
+        /*
+            .get('/rooms/')
             .end(function(err, res) {
                 should.equal(err, null);
                 res.should.have.status(200);
                 res.should.be.html;
                 done();
             });
+        */
     });
 });

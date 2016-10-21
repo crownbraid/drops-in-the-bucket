@@ -8,12 +8,12 @@ binaryServer = BinaryServer({port: 9002});
 
 binaryServer.on('connection', function(client) {
   client.on('stream', function(stream, meta) {
-
+    console.log("user info equals........", meta);
     // get from elsewhere
-    var username = "real_cool_dude";
-    var roomname = 'room1';
-    var numUsers = 4;
-    var duration = 10000;
+    var username = meta.username;
+    var roomname = meta.roomname;
+    var numUsers = meta.numUsers;
+    var duration = meta.duration;
 
     var time = Date.now();
 

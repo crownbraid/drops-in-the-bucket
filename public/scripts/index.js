@@ -102,15 +102,17 @@ function show_user_rooms(username) {
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 function animatePostedAudio() {
-	var functions = roomInfo.finished.map(function(submitter, i) {
-		return function() {
-			$('#submitted-by').css({'opacity': 0}).text('submitted by: ' + submitter)
-				.animate({'opacity': 1}, 1600);
-			animateWater(1000);
-			timeOuts.push(setTimeout(functions[i + 1], 1600));
-		};		
-	});
-	functions[0]();
+	if (roomInfo.finished.length > 0) {
+		var functions = roomInfo.finished.map(function(submitter, i) {
+			return function() {
+				$('#submitted-by').css({'opacity': 0}).text('submitted by: ' + submitter)
+					.animate({'opacity': 1}, 1600);
+				animateWater(1000);
+				timeOuts.push(setTimeout(functions[i + 1], 1600));
+			};		
+		});
+		functions[0]();
+	}
 }
 
 
@@ -138,7 +140,6 @@ function openNewClient() {
 }
 
 function prepareRecorder() {
-	recording = true;
 	if (recordingInterfaceDisplayed) {
 		startRecording();
 	} else {
@@ -150,7 +151,14 @@ function startRecording() {
 	timeOuts.push(setTimeout(function () {
 		buttonState = 'stop';
 		changeButton();
-		window.Stream = client.createStream();
+		var sessionInfo = {
+			username: userInfo.username,
+			roomname: roomInfo.name,
+			numUsers: roomInfo.invited.length,
+			duration: roomInfo.timelimit
+		}
+		window.Stream = client.createStream(sessionInfo);
+		recording = true;
 		timeOuts.push(setTimeout(function() {endRecording()}, recordingLength));
 		animateRecordingProgress();
 	}, 1000));
