@@ -1,7 +1,7 @@
-var passport = require('passport');
-var Room = require('../../models/room');
-var Account = require('../../models/account');
-var router = require('express').Router();
+var passport = require('passport')
+  , Room = require('../models/room')
+  , Account = require('../models/account')
+  , router = require('express').Router();
 
 router.post('/', function(req, res) {
     Room.create({

@@ -1,8 +1,7 @@
-var passport = require('passport');
-var Account = require('../../models/account');
-var Room = require('../../models/room');
-var router = require('express').Router();
-// var async = require('async');
+var passport = require('passport')
+  , Account = require('../models/account')
+  , Room = require('../models/room')
+  , router = require('express').Router();
 
 router.post('/register', function(req, res, next) {
   console.log('registering user');
@@ -17,8 +16,6 @@ router.post('/register', function(req, res, next) {
     });
   });
 });
-
-// res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 
 router.post('/login', passport.authenticate('local'), function(req, res) { 
   var rooms = req.user.rooms;
