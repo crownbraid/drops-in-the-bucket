@@ -7,8 +7,8 @@ This app provides a specific workflow for long-distance collaboration between so
 
 Users can make accounts to keep track of active and closed rooms.
 
-## Major Technologies
-Node.js, Mongoose, Passport, Express, BinaryJS, Python, Chai
+## Essential Tools
+Node.js, Express, MongoDB, Mongoose, Passport, BinaryJS, Python, HTML/CSS, jQuery, Chai
 
-
-child_process, python-shell, wav, junk, fs
+## Other Dependencies and Middleware
+Python-Shell, Node-Wav, Junk, Body Parser, Cookie Session, Passport Local, Morgan, Express Session
