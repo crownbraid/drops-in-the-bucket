@@ -1,4 +1,4 @@
-# Drops In The Bucket: #### *a tool for gathering sounds from a distance, and stirring them together.*
+# Drops In The Bucket: *a tool for gathering sounds from a distance, and stirring them together.*
 
 ## Synopsis
 This app provides a specific, game-like workflow for long-distance collaboration between sound artists, improvisatory musicians, field recordists, etc. 
