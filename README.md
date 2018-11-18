@@ -16,5 +16,5 @@ BinaryJS, Python, Python-Shell, Node-Wav, Junk
 ## Express Middleware
 Passport, Passport Local, Connect-Ensure-Login, Express Session, Cookie Session, Body Parser
 
-## Dev Dependecies / Unit Testing
-Morgan, Nodemon, Chai
+## Dev Tools
+Morgan, Nodemon, Mocha, Chai
