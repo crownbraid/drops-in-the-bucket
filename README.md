@@ -1,7 +1,7 @@
 # Drops In The Bucket: *a tool for gathering sounds from a distance, and stirring them together.*
 
 ## Synopsis
-This app provides a specific workflow for long-distance collaboration between sound artists, improvisatory musicians, field recordists, etc. 
+This app provides a specific, game-like workflow for long-distance collaboration between sound artists, improvisatory musicians, field recordists, etc. 
 
 ## How it works
 A user creates a 'room' and invites other users to join. Each member of a room contributes an audio recording through the app's recorder interface. To guide these recordings, the room's creator may specify a set of instructions or rules.
