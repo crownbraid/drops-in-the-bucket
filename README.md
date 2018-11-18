@@ -9,3 +9,6 @@ Users can make accounts to keep track of active and closed rooms.
 
 ## Major Technologies
 Node.js, Mongoose, Passport, Express, BinaryJS, Python, Chai
+
+
+child_process, python-shell, wav, junk, fs
