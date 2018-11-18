@@ -16,5 +16,8 @@ BinaryJS, Python, Python-Shell, Node-Wav, Junk
 ## Express Middleware
 Passport, Passport Local, Connect-Ensure-Login, Express Session, Cookie Session, Body Parser
 
+## Deployment Platforms
+Heroku, mLab
+
 ## Dev Tools
 Morgan, Nodemon, Mocha, Chai
