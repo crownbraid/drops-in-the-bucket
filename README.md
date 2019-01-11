@@ -1,5 +1,5 @@
 # Drops In The Bucket: *a tool for gathering sounds from a distance, and stirring them together.*
- ![alt text](https://i.ibb.co/N2kgZv3/client-design.jpg)
+ ![alt text](https://i.ibb.co/N2kgZv3/client-design.jpg | width=100)
 ## Purpose
 To implement a game-like workflow for long-distance collaboration between sound artists, improvisatory musicians, field recordists, etc.
 
