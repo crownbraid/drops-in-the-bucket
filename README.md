@@ -3,6 +3,8 @@
 ## Purpose
 To implement a game-like workflow for long-distance collaboration between sound artists, improvisatory musicians, field recordists, etc. 
 
+![alt text](https://ibb.co/qJ8ZQCF)
+
 ## How it works
 Users may browse, create, or join rooms. Within a room, members contribute audio recordings through the app's recorder interface (the room's host may specify performance instructions). These recordings are 'drops' in the 'bucket.' Once the bucket is full, the server 'stirs' the recordings together; it dubs them over one another and shares the composite with the group. The composite recording may be downloaded, or collaboration may continue while users swap out their submissions.
 
